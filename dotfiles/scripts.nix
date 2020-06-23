@@ -2,6 +2,8 @@
 
 let
 
+  emacs = pkgs.callPackage ../packages/emacs.nix {};
+
   shebang = "#!${pkgs.bash}/bin/bash";
 
   ensure-binary-exists = bin: ''
@@ -41,8 +43,7 @@ in
 {
   em =
     let
-      wsp = "wsp-term";
-      emacs = pkgs.callPackage ../packages/emacs.nix {};
+      wsp = "emacs-workspace-terminal";
     in
       ''
         ${shebang}
@@ -53,8 +54,34 @@ in
             args="$@"
         fi
 
-        ${emacs}/bin/emacsclient -c -t -s ${wsp} $args || \
-          (${emacs}/bin/emacs --daemon=${wsp} && ${emacs}/bin/emacsclient -c -t -s ${wsp} $args)
+        run-emacsclient() {
+          ${emacs}/bin/emacsclient -c -t -s ${wsp} $args
+        }
+
+        start-workspace-server() {
+          ${emacs}/bin/emacs --daemon=${wsp}
+        }
+
+         run-emacsclient || (start-workspace-server && run-emacsclient)
+      '';
+
+  magit =
+    let
+      wsp = "emacs-workspace-magit";
+    in
+      ''
+        ${shebang}
+
+        run-magit() {
+          ${emacs}/bin/emacsclient -c -t -s ${wsp} \
+              --eval '(progn (magit-status) (delete-other-windows) (deactivate-mark))'
+        }
+
+        start-workspace-server() {
+          ${emacs}/bin/emacs --daemon=${wsp}
+        }
+
+        run-magit || (start-workspace-server && run-magit)
       '';
 
   session-quit = mkRunner "session-quit" {

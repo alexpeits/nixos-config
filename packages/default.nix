@@ -11,8 +11,8 @@ let
   latex = pkgs.texlive.combine {
     inherit (pkgs.texlive)
       scheme-medium
-      latexmk
-      paralist
+      collection-fontsextra
+      collection-latexextra
       ;
   };
 
@@ -56,6 +56,7 @@ let
       pkgs.bind
       pkgs.binutils-unwrapped
       pkgs.docker-compose
+      pkgs.entr
       pkgs.gcc
       pkgs.git
       pkgs.gnumake
@@ -119,10 +120,16 @@ let
 
       pkgs.nodejs-12_x
 
+      pkgs.coq
+
       nixpkgs-unstable.emacsPackages.agda2-mode
       agda
 
-      pkgs.coq
+      nixpkgs-unstable.rustc
+      nixpkgs-unstable.cargo
+      nixpkgs-unstable.rustfmt
+      nixpkgs-unstable.clippy
+      pkgs.rustracer
 
       pkgs.niv
       pkgs.cachix

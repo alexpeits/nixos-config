@@ -32,6 +32,7 @@ in
 
       # ~/bin
       "bin/em" = { text = scripts.em; executable = true; };
+      "bin/magit" = { text = scripts.magit; executable = true; };
       "bin/session-quit" = { text = scripts.session-quit; executable = true; };
       "bin/cookie" = { text = scripts.cookie; executable = true; };
       "bin/gen-gitignore" = { text = scripts.gen-gitignore; executable = true; };
@@ -39,6 +40,7 @@ in
       # others
       ".config/rofi/config.rasi".source = ./dotfiles/rofi;
       ".ghci".source = ./dotfiles/ghci;
+      ".latexmkrc".text = ''$pdf_previewer = "start evince";'';
       ".local/share/applications/org-protocol.desktop".source = ./dotfiles/org-protocol.desktop;
     };
     sessionVariables = {
@@ -131,7 +133,7 @@ in
       };
       Service = {
         Type = "oneshot";
-        ExecStart = "%h/Dropbox/emacs/org/.autocommit";
+        ExecStart = "${pkgs.nix}/bin/nix-shell -p bash git coreutils --command 'bash %h/Dropbox/emacs/org/.autocommit'";
       };
     };
   };

@@ -15,7 +15,7 @@ pkgs.writeScriptBin "kbconfig" ''
   prepare() {
       ${pkgs.killall}/bin/killall xcape || true
       ${setxkbmap} -option  # clear options
-      ${setxkbmap} -option ctrl:ralt_rctrl
+      # ${setxkbmap} -option ctrl:ralt_rctrl
       ${setxkbmap} -layout us,gr -option grp:alt_space_toggle
       ${xset} r rate 500 45  # not sure if needed
   }
