@@ -11,7 +11,7 @@ let
   scripts = pkgs.callPackage ./dotfiles/scripts.nix {};
   autostart = pkgs.callPackage ./dotfiles/autostart.nix {};
 
-  i3lock-wrap = pkgs.callPackage ./packages/tools/i3lock-wrap {};
+  i3lock-wrap = pkgs.callPackage ./packages/tools/i3lock-wrap.nix {};
   lock-cmd = "${i3lock-wrap}/bin/i3lock-wrap";
 
 in

@@ -131,6 +131,8 @@ in
       set undofile
   endif
 
+  let g:gruvbox_inverse = 0
+
   if empty($TERM_LIGHT)
       let g:gruvbox_contrast_dark = 'medium'
       set background=dark

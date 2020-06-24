@@ -21,7 +21,7 @@ let
     ghc = nixpkgs-unstable.ghc.withPackages (ps: [ps.ieee754]);
   };
 
-  i3lock-wrap = pkgs.callPackage ./tools/i3lock-wrap {};
+  i3lock-wrap = pkgs.callPackage ./tools/i3lock-wrap.nix {};
   indicator-redshift = pkgs.callPackage ./tools/indicator-redshift {};
   indicator-tpacpi = pkgs.callPackage ./tools/indicator-tpacpi {};
   kbconfig = pkgs.callPackage ./tools/kbconfig.nix {};
@@ -99,6 +99,7 @@ let
       pkgs.scrot
       pkgs.trayer
       pkgs.wmctrl
+      pkgs.xdotool
       pkgs.xorg.xmessage
       trayer-wrap
 
