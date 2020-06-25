@@ -74,7 +74,7 @@ in
 
         run-magit() {
           ${emacs}/bin/emacsclient -c -t -s ${wsp} \
-              --eval '(progn (magit-status) (delete-other-windows) (deactivate-mark))'
+              --eval '(progn (magit-status) (delete-other-windows))'
         }
 
         start-workspace-server() {
