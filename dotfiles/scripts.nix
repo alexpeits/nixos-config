@@ -2,7 +2,7 @@
 
 let
 
-  emacs = pkgs.callPackage ../packages/emacs.nix {};
+  emacs = (pkgs.callPackage ../packages/emacs.nix {}).emacs;
 
   shebang = "#!${pkgs.bash}/bin/bash";
 

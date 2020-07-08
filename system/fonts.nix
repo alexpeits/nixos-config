@@ -31,7 +31,6 @@ in
   fonts.fonts = [
     iosevka-term
     pkgs.hack-font
-    pkgs.mononoki
     pkgs.source-code-pro
   ];
 

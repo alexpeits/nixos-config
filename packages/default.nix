@@ -6,7 +6,7 @@ let
   nixpkgs-unstable = import sources.nixpkgs-unstable { config.allowUnfree = true; };
 
   # TODO: build emacs with a pinned nixpkgs
-  emacs-27 = pkgs.callPackage ./emacs.nix {};
+  emacs = pkgs.callPackage ./emacs.nix {};
 
   latex = pkgs.texlive.combine {
     inherit (pkgs.texlive)
@@ -17,9 +17,11 @@ let
   };
 
   agda = nixpkgs-unstable.agda.withPackages {
-    pkgs = [nixpkgs-unstable.agdaPackages.standard-library];
-    ghc = nixpkgs-unstable.ghc.withPackages (ps: [ps.ieee754]);
+    pkgs = [ nixpkgs-unstable.agdaPackages.standard-library ];
+    ghc = nixpkgs-unstable.ghc.withPackages (ps: [ ps.ieee754 ]);
   };
+
+  python = pkgs.python37.withPackages (ps: [ ps.flake8 ps.mypy ]);
 
   i3lock-wrap = pkgs.callPackage ./tools/i3lock-wrap.nix {};
   indicator-redshift = pkgs.callPackage ./tools/indicator-redshift {};
@@ -79,7 +81,8 @@ let
       pkgs.jq
       pkgs.ripgrep
 
-      emacs-27
+      emacs.emacs
+
       nixpkgs-unstable.tmate
       pkgs.tmux
       pkgs.vim
@@ -115,16 +118,21 @@ let
 
       # pkgs.scummvm
 
-      pkgs.python37
+      python
       pkgs.python37Packages.black
       pkgs.python37Packages.ipython
 
       pkgs.nodejs-12_x
 
+      pkgs.ocaml
+      pkgs.opam
+
       pkgs.coq
 
       nixpkgs-unstable.emacsPackages.agda2-mode
       agda
+
+      pkgs.tlaplusToolbox
 
       nixpkgs-unstable.rustc
       nixpkgs-unstable.cargo

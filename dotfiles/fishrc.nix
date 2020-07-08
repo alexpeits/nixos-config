@@ -61,7 +61,7 @@ let
   theme = ''
     set -g fish_color_autosuggestion 586e75
     set -g fish_color_cancel -r
-    set -g fish_color_command 93a1a1
+    set -g fish_color_command
     set -g fish_color_comment 586e75
     set -g fish_color_cwd green
     set -g fish_color_cwd_root red
@@ -112,6 +112,10 @@ in
 
     function py
       eval "nix-shell -p 'python37.withPackages (pkgs: with pkgs; [ ipython $argv ])'"
+    end
+
+    function nsu
+      nix-shell -I nixpkgs=(nix-instantiate --eval -E '<nixpkgs-unstable>') $argv
     end
 
     # messes with emacs

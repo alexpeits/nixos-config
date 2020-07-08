@@ -20,7 +20,7 @@ let
 
   version = "27.0.90";
 
-  emacs = pkgs.emacs.overrideAttrs (
+  emacsDrv = pkgs.emacs.overrideAttrs (
     old: {
       name = "emacs-${version}";
       version = version;
@@ -31,5 +31,11 @@ let
     }
   );
 
-in
-emacs.override { srcRepo = true; }
+  dontRecurseIntoAttrs =  # this should be in lib, no?
+    attrs: attrs // { recurseForDerivations = false; };
+
+in rec {
+  emacs = emacsDrv.override { srcRepo = true; };
+  emacsPackages = dontRecurseIntoAttrs (pkgs.emacsPackagesFor emacs);
+  emacsWithPackages = emacsPackages.emacsWithPackages;
+}
