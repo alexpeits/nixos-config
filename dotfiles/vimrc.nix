@@ -41,6 +41,7 @@ in
   Plugin 'peitalin/vim-jsx-typescript'
   Plugin 'chr4/nginx.vim'
   Plugin 'tpope/vim-markdown'
+  Plugin 'Vimjas/vim-python-pep8-indent'
 
   " themes & ui
   Plugin 'gruvbox-community/gruvbox'

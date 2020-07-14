@@ -21,8 +21,6 @@ let
     ghc = nixpkgs-unstable.ghc.withPackages (ps: [ ps.ieee754 ]);
   };
 
-  python = pkgs.python37.withPackages (ps: [ ps.flake8 ps.mypy ]);
-
   i3lock-wrap = pkgs.callPackage ./tools/i3lock-wrap.nix {};
   indicator-redshift = pkgs.callPackage ./tools/indicator-redshift {};
   indicator-tpacpi = pkgs.callPackage ./tools/indicator-tpacpi {};
@@ -50,7 +48,7 @@ let
       pkgs.gnome3.nautilus
       pkgs.google-chrome
       pkgs.pavucontrol
-      # pkgs.postman
+      pkgs.postman
       pkgs.spotify
       pkgs.vlc
       nixpkgs-unstable.zoom-us
@@ -118,9 +116,12 @@ let
 
       # pkgs.scummvm
 
-      python
+      pkgs.python37
       pkgs.python37Packages.black
+      pkgs.python37Packages.flake8
       pkgs.python37Packages.ipython
+      pkgs.python37Packages.isort
+      pkgs.python37Packages.mypy
 
       pkgs.nodejs-12_x
 
