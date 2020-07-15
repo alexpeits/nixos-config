@@ -87,9 +87,9 @@ in
   filetype plugin indent on
   filetype plugin on
 
-  autocmd BufRead,BufNewFile *.html,*.css,*.js,*.jsx,*.ts,*.tsx,*.json,*.hs,*.nix set tabstop=2
-  autocmd BufRead,BufNewFile *.html,*.css,*.js,*.jsx,*.ts,*.tsx,*.json,*.hs,*.nix set softtabstop=2
-  autocmd BufRead,BufNewFile *.html,*.css,*.js,*.jsx,*.ts,*.tsx,*.json,*.hs,*.nix set shiftwidth=2
+  autocmd BufRead,BufNewFile *.html,*.css,*.js,*.jsx,*.ts,*.tsx,*.json,*.nix set tabstop=2
+  autocmd BufRead,BufNewFile *.html,*.css,*.js,*.jsx,*.ts,*.tsx,*.json,*.nix set softtabstop=2
+  autocmd BufRead,BufNewFile *.html,*.css,*.js,*.jsx,*.ts,*.tsx,*.json,*.nix set shiftwidth=2
 
   " jump to last position when opening file
   if has("autocmd")
@@ -163,6 +163,15 @@ in
   au FileType haskell nnoremap <buffer><silent> ]] :call JumpHaskellFunction(0)<CR>
   au FileType haskell nnoremap <buffer><silent> [[ :call JumpHaskellFunction(1)<CR>
   au FileType haskell nnoremap <buffer> gI gg /\cimport<CR><ESC>:noh<CR>
+  autocmd BufRead,BufNewFile *.hs set tabstop=2
+  autocmd BufRead,BufNewFile *.hs set softtabstop=2
+  autocmd BufRead,BufNewFile *.hs set shiftwidth=2
+
+  " purescript
+  au Bufread,BufNewFile *.purs set ft=haskell
+  autocmd BufRead,BufNewFile *.purs set tabstop=2
+  autocmd BufRead,BufNewFile *.purs set softtabstop=2
+  autocmd BufRead,BufNewFile *.purs set shiftwidth=2
 
   if exists("+mouse")
       set mouse=a
