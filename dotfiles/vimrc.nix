@@ -44,8 +44,10 @@ in
   Plugin 'Vimjas/vim-python-pep8-indent'
 
   " themes & ui
-  Plugin 'gruvbox-community/gruvbox'
+  Plugin 'jonathanfilip/vim-lucius'
   Plugin 'vim-airline/vim-airline'
+  Plugin 'vim-airline/vim-airline-themes'
+
   call vundle#end()
 
 
@@ -132,20 +134,31 @@ in
       set undofile
   endif
 
-  let g:gruvbox_inverse = 0
-
+  let g:lucius_high_contrast = 1
+  
   if empty($TERM_LIGHT)
-      let g:gruvbox_contrast_dark = 'medium'
+      let g:lucius_style = 'dark'
       set background=dark
-      colorscheme gruvbox
+      colorscheme lucius
+      highlight Normal ctermbg=234
+      highlight MatchParen cterm=reverse ctermfg=240
+      highlight ColorColumn ctermbg=236
       highlight ExtraWhitespace ctermbg=88
-      let g:airline_theme='gruvbox'
+      highlight Comment cterm=none gui=italic
+      highlight Normal ctermbg=NONE guibg=NONE
+      highlight LineNr ctermfg=241 ctermbg=NONE
+      highlight VertSplit ctermfg=252 ctermbg=238
+      highlight haskellBottom ctermfg=Red
+      highlight haskellFail ctermfg=LightRed
+      let g:airline_theme='luna'
   else
-      let g:gruvbox_contrast_light = 'hard'
+      let g:lucius_style = 'light'
       set background=light
-      colorscheme gruvbox
+      colorscheme lucius
+      highlight MatchParen ctermfg=240 ctermbg=152
+      highlight ColorColumn ctermbg=252
       highlight ExtraWhitespace ctermbg=210
-      let g:airline_theme='gruvbox'
+      let g:airline_theme='lucius'
   endif
 
   match ExtraWhitespace /\s\+$/
