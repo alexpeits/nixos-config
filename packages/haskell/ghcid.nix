@@ -5,8 +5,8 @@ let
   src = pkgs.fetchFromGitHub {
     owner = "ndmitchell";
     repo = "ghcid";
-    rev = "40a6ed21bc811e7795c525ce9a4fc689c6b99f60";
-    sha256 = "020g3032gggxllnapqf7nbg5wqjg3c2z190f2jx3cl6z0fswgiwz";
+    rev = "e54c1ebcec8bf4313ef04a1c5f47ecdbb6d11db3";
+    sha256 = "1bs07jjj3pgwdr81w8piph6wz73n0gwj3imbnd2za0jqxbshyzry";
   };
 
 in

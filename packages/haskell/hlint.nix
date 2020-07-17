@@ -5,8 +5,8 @@ let
   src = pkgs.fetchFromGitHub {
     owner = "ndmitchell";
     repo = "hlint";
-    rev = "f404c85ef5e14bff6e0216072e04ea040821fbbd";
-    sha256 = "0pyiyvn8hc8i59v58k484ph2yqvaai53w8h4ms0x8q9dw0ljj1hr";
+    rev = "d853362beedb3b260da932dbdbf576dd76452cc2";
+    sha256 = "061w001kzhzbvnjnqjr9y9vv2nfnwsjaaby941zlb3vdzwzlj7m5";
   };
 
 in
