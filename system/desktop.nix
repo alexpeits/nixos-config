@@ -53,9 +53,9 @@ in
     desktopManager = {
       plasma5.enable = lib.mkForce false;
       # xfce = {
-        # enable = true;
-        # noDesktop = false;
-        # enableXfwm = false;
+      # enable = true;
+      # noDesktop = false;
+      # enableXfwm = false;
       # };
     };
 

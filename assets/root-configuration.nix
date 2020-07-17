@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       /home/alex/nixos-config/configuration.nix
       /home/alex/nixos-config/hardware-configuration.nix
@@ -23,7 +24,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
- 
+
   boot.initrd.luks.devices = {
     root = {
       device = "/dev/sda2";
@@ -57,4 +58,3 @@
   system.stateVersion = "20.03"; # Did you read the comment?
 
 }
-

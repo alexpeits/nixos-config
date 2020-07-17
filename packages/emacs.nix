@@ -31,10 +31,11 @@ let
     }
   );
 
-  dontRecurseIntoAttrs =  # this should be in lib, no?
+  dontRecurseIntoAttrs = # this should be in lib, no?
     attrs: attrs // { recurseForDerivations = false; };
 
-in rec {
+in
+rec {
   emacs = emacsDrv.override { srcRepo = true; };
   emacsPackages = dontRecurseIntoAttrs (pkgs.emacsPackagesFor emacs);
   emacsWithPackages = emacsPackages.emacsWithPackages;
