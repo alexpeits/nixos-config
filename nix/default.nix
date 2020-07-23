@@ -21,7 +21,9 @@ in
 
     binaryCachePublicKeys = [
       "alexpeits.cachix.org-1:O5CoFuKPb8twVOp1OrfSOPfgaEo5X5xlIqGg6dMEgB4="
+      "alexpeits-gh-actions.cachix.org-1:arRchgbGZe343wXGnh5AGun/3i/JwB3GuuCj8+XJ8Tg="
       "alexpeits-travis.cachix.org-1:V3Rz9GshL7QTfajKGoUpW8PwqQZSdWmjTK2f/VB1/do="
+      "ghcide-nix.cachix.org-1:ibAY5FD+XWLzbLr8fxK6n8fL9zZe7jS+gYeyxyWYK5c="
     ];
 
     nixPath = [
