@@ -39,6 +39,9 @@ let
   ormolu = pkgs.callPackage ./ormolu.nix {
     pkgs = nixpkgs-unstable;
   };
+  cabal-edit = pkgs.callPackage ./cabal-edit.nix {
+    pkgs = nixpkgs-unstable;
+  };
 
   ghc = pkgs.callPackage ./ghc.nix {};
 
@@ -54,6 +57,7 @@ in
   hlint
   ghcid
   ormolu
+  cabal-edit
 
   ghc.ghc865
   ghc.ghc881
