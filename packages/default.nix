@@ -29,6 +29,7 @@ let
   patat = pkgs.callPackage ./tools/patat.nix {};
   trayer-wrap = pkgs.callPackage ./tools/trayer-wrap.nix {};
   xmonad-build = pkgs.callPackage ./tools/xmonad-build.nix {};
+  vale = pkgs.callPackage ./tools/vale.nix {};
 
   transcribe = pkgs.callPackage ./apps/transcribe.nix {};
   obsidian = pkgs.callPackage ./apps/obsidian.nix {};
@@ -80,6 +81,8 @@ let
       pkgs.ripgrep
 
       emacs.emacs
+
+      vale
 
       nixpkgs-unstable.tmate
       pkgs.tmux
