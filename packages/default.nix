@@ -22,8 +22,6 @@ let
   };
 
   i3lock-wrap = pkgs.callPackage ./tools/i3lock-wrap.nix {};
-  indicator-redshift = pkgs.callPackage ./tools/indicator-redshift {};
-  indicator-tpacpi = pkgs.callPackage ./tools/indicator-tpacpi {};
   kbconfig = pkgs.callPackage ./tools/kbconfig.nix {};
   nixfmt = pkgs.callPackage ./tools/nixfmt.nix {};
   patat = pkgs.callPackage ./tools/patat.nix {};
@@ -31,7 +29,6 @@ let
   xmonad-build = pkgs.callPackage ./tools/xmonad-build.nix {};
   vale = pkgs.callPackage ./tools/vale.nix {};
 
-  transcribe = pkgs.callPackage ./apps/transcribe.nix {};
   obsidian = pkgs.callPackage ./apps/obsidian.nix {};
 
   haskellPackages = pkgs.callPackage ./haskell {};
@@ -115,7 +112,6 @@ let
       pkgs.audacity
       nixpkgs-unstable.lilypond
       # nixpkgs-unstable.musescore
-      # transcribe
 
       # pkgs.scummvm
 
@@ -127,6 +123,7 @@ let
       pkgs.python37Packages.mypy
 
       pkgs.nodejs-12_x
+      pkgs.yarn
 
       pkgs.ocaml
       pkgs.opam
@@ -149,13 +146,14 @@ let
       pkgs.nix-prefetch-git
       pkgs.nixpkgs-fmt
 
-      # indicator-redshift
-      # indicator-tpacpi
       kbconfig
 
       latex
       # obsidian
+
       # pkgs.dwarf-fortress-packages.dwarf-fortress
+      pkgs.crawlTiles
+      pkgs.brogue
     ];
 
 in

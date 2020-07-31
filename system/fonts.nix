@@ -32,7 +32,8 @@ in
     iosevka-term
     pkgs.hack-font
     pkgs.source-code-pro
-    pkgs.fira-code
+    pkgs.source-sans-pro
+    pkgs.source-serif-pro
   ];
 
   fonts.fontconfig = {
