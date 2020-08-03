@@ -42,6 +42,7 @@ let
       pkgs.deluge
       nixpkgs-unstable.dropbox
       pkgs.evince
+      pkgs.gnome3.eog
       pkgs.gnome3.gedit
       pkgs.gnome3.nautilus
       pkgs.google-chrome
