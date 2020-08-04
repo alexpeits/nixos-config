@@ -10,6 +10,7 @@ in
 
   services.tlp = {
     enable = true;
+    # written to /etc/tlp.conf
     extraConfig = ''
       TLP_DEFAULT_MODE=AC
       TLP_PERSISTENT_DEFAULT=0
@@ -53,6 +54,7 @@ in
     '';
   };
 
+  # https://unix.stackexchange.com/a/175035
   services.acpid.acEventCommands = ''
     echo -1 > /sys/module/usbcore/parameters/autosuspend
   '';

@@ -1,6 +1,7 @@
 { ... }:
 
 {
+  # writes to /etc/X11/xorg.conf.d
   services.xserver = {
     layout = "us,gr";
     xkbOptions = "caps:escape, ctrl:ralt_rctrl, grp:alt_space_toggle";

@@ -245,6 +245,9 @@ in
     };
   };
 
+  services.keybase.enable = true;
+  services.kbfs.enable = true;
+
   services.dunst = {
     enable = true;
     settings = {

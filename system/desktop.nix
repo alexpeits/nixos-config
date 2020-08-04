@@ -2,9 +2,6 @@
 
 let
 
-  indicator-redshift = pkgs.callPackage ../packages/tools/indicator-redshift {};
-  indicator-tpacpi = pkgs.callPackage ../packages/tools/indicator-tpacpi {};
-
   trayer-wrap = pkgs.callPackage ../packages/tools/trayer-wrap.nix {};
 
 in
@@ -16,6 +13,7 @@ in
   services.xserver = {
     enable = true;
 
+    # writes to /etc/X11/xorg.conf.d
     libinput = {
       enable = true;
       tapping = false;

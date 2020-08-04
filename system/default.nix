@@ -59,16 +59,15 @@
     pkgs.hplip
   ];
 
-  services.keybase.enable = true;
-  services.kbfs.enable = true;
-
   # limit the amount of logs stored in /var/log/journal
+  # writes to: /etc/systemd/journald.conf
   services.journald.extraConfig = ''
     SystemMaxUse=2G
   '';
 
   # to prevent nix-shell complaining about no space left
   # default value is 10% of total RAM
+  # writes to: /etc/systemd/logind.conf
   services.logind.extraConfig = ''
     RuntimeDirectorySize=4G
   '';
