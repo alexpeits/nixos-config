@@ -67,6 +67,7 @@ let
       pkgs.powertop
       pkgs.sqlite
       pkgs.tree
+      pkgs.unzip
       pkgs.wget
       pkgs.xclip
 
