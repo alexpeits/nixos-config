@@ -52,6 +52,8 @@ let
       pkgs.vlc
       nixpkgs-unstable.zoom-us
 
+      pkgs.qutebrowser
+
       pkgs.bind
       pkgs.binutils-unwrapped
       pkgs.docker-compose
