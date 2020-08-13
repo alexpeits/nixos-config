@@ -137,13 +137,13 @@ let
       nixpkgs-unstable.emacsPackages.agda2-mode
       agda
 
-      pkgs.tlaplusToolbox
+      # pkgs.tlaplusToolbox
 
-      nixpkgs-unstable.rustc
-      nixpkgs-unstable.cargo
-      nixpkgs-unstable.rustfmt
-      nixpkgs-unstable.clippy
-      pkgs.rustracer
+      # nixpkgs-unstable.rustc
+      # nixpkgs-unstable.cargo
+      # nixpkgs-unstable.rustfmt
+      # nixpkgs-unstable.clippy
+      # pkgs.rustracer
 
       pkgs.niv
       pkgs.cachix
@@ -158,6 +158,8 @@ let
       # pkgs.dwarf-fortress-packages.dwarf-fortress
       pkgs.crawlTiles
       pkgs.brogue
+
+      nixpkgs-unstable.godot
     ];
 
 in
