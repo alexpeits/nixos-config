@@ -33,7 +33,6 @@ in
         wayland = false;
       };
       sddm.enable = lib.mkForce false;
-      # defaultSession = "none+xmonad";
       sessionCommands = ''
         ${pkgs.dropbox}/bin/dropbox &
         ${pkgs.networkmanagerapplet}/bin/nm-applet &
@@ -48,14 +47,7 @@ in
       '';
     };
 
-    desktopManager = {
-      plasma5.enable = lib.mkForce false;
-      # xfce = {
-      # enable = true;
-      # noDesktop = false;
-      # enableXfwm = false;
-      # };
-    };
+    desktopManager.plasma5.enable = lib.mkForce false;
 
     windowManager = {
       xmonad = {
@@ -65,15 +57,4 @@ in
   };
 
   services.gnome3.gnome-keyring.enable = true;
-
-  environment.systemPackages =
-    [
-      pkgs.xfce.dconf
-      pkgs.xfce.xfconf
-      pkgs.xfce.xfce4-battery-plugin
-      pkgs.xfce.xfce4-xkb-plugin
-      pkgs.xfce.xfce4-systemload-plugin
-      pkgs.xfce.xfce4-cpugraph-plugin
-    ];
-
 }

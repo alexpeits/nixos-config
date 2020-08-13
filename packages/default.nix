@@ -56,6 +56,7 @@ let
 
       pkgs.bind
       pkgs.binutils-unwrapped
+      pkgs.dconf
       pkgs.docker-compose
       pkgs.entr
       pkgs.gcc
