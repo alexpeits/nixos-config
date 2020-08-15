@@ -82,7 +82,8 @@ let
       pkgs.jq
       pkgs.ripgrep
 
-      emacs.emacs
+      # emacs.emacs
+      nixpkgs-unstable.emacs
 
       vale
 

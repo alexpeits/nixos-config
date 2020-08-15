@@ -43,9 +43,12 @@ in
 
   # brittany
   fast-tags
-  hlint
-  ghcid
-  ormolu
+  # hlint
+  # ghcid
+  # ormolu
+  nixpkgs-unstable.hlint
+  nixpkgs-unstable.ghcid
+  nixpkgs-unstable.ormolu
   cabal-edit
 
   ghc.ghc865
