@@ -42,14 +42,16 @@ in
   pkgs.stack
 
   # brittany
-  fast-tags
+  # fast-tags
   # hlint
   # ghcid
   # ormolu
-  nixpkgs-unstable.hlint
-  nixpkgs-unstable.ghcid
-  nixpkgs-unstable.ormolu
-  cabal-edit
+  # cabal-edit
+  nixpkgs-unstable.haskellPackages.fast-tags
+  nixpkgs-unstable.haskellPackages.hlint
+  nixpkgs-unstable.haskellPackages.ghcid
+  nixpkgs-unstable.haskellPackages.ormolu
+  nixpkgs-unstable.haskellPackages.cabal-edit
 
   ghc.ghc865
   ghc.ghc881
