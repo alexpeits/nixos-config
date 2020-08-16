@@ -37,3 +37,5 @@ efibootmgr -t 5
 - make sessionCommands work for xmonad session
 - fonts (manually probably)
 - other things written to /etc (can be symlinked to here)
+
+check out  https://gitlab.com/NobbZ/nix-home-manager-dotfiles/
