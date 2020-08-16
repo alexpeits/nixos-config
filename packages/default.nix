@@ -28,6 +28,7 @@ let
   trayer-wrap = pkgs.callPackage ./tools/trayer-wrap.nix {};
   xmonad-build = pkgs.callPackage ./tools/xmonad-build.nix {};
   vale = pkgs.callPackage ./tools/vale.nix {};
+  tpacpi-bat = pkgs.callPackages ./tools/tpacpi-bat.nix {};
 
   obsidian = pkgs.callPackage ./apps/obsidian.nix {};
 
@@ -109,6 +110,7 @@ let
       pkgs.xdotool
       pkgs.xorg.xmessage
       trayer-wrap
+      tpacpi-bat
 
       nixpkgs-unstable.xmobar
       xmonad-build

@@ -1,10 +1,5 @@
 { pkgs, ... }:
 
-let
-
-  tpacpi-bat = pkgs.callPackage ../packages/tools/tpacpi-bat.nix {};
-
-in
 {
   powerManagement.powertop.enable = true;
 
@@ -58,7 +53,4 @@ in
   services.acpid.acEventCommands = ''
     echo -1 > /sys/module/usbcore/parameters/autosuspend
   '';
-
-  environment.systemPackages = [ tpacpi-bat ];
-
 }

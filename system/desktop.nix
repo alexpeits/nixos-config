@@ -13,20 +13,6 @@ in
   services.xserver = {
     enable = true;
 
-    # writes to /etc/X11/xorg.conf.d
-    libinput = {
-      enable = true;
-      tapping = false;
-      disableWhileTyping = true;
-
-      # https://github.com/NixOS/nixpkgs/issues/75007
-      naturalScrolling = true;
-      # natural scrolling for touchpad only, not mouse
-      additionalOptions = ''
-        MatchIsTouchpad "on"
-      '';
-    };
-
     displayManager = {
       gdm = {
         enable = true;

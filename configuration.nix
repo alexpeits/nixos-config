@@ -14,7 +14,7 @@ in
     ./system
     ./system/desktop.nix
     ./system/fonts.nix
-    ./system/keyboard.nix
+    ./system/input.nix
     ./system/power.nix
     # ./system/virtualisation.nix
   ];
