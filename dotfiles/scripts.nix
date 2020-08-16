@@ -2,7 +2,11 @@
 
 let
 
-  emacs = (pkgs.callPackage ../packages/emacs.nix {}).emacs;
+  sources = import ../nix/sources.nix;
+  nixpkgs-unstable = import sources.nixpkgs-unstable {};
+
+  # emacs = (pkgs.callPackage ../packages/emacs.nix {}).emacs;
+  emacs = nixpkgs-unstable.emacs;
 
   shebang = "#!${pkgs.bash}/bin/bash";
 
