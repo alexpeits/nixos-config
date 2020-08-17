@@ -12,6 +12,7 @@ let
   packages = pkgs.callPackage ../packages {};
   debian-manage = pkgs.callPackage ./debian-manage.nix {};
 
+  kbconfig = pkgs.callPackage ../packages/tools/kbconfig.nix {};
   trayer-wrap = pkgs.callPackage ../packages/tools/trayer-wrap.nix {};
 
   nixPath = builtins.concatStringsSep ":" [
@@ -36,7 +37,7 @@ in
     packages = packages;
     sessionVariables = {
       NIX_PATH = nixPath;
-      # PATH = "$HOME/bin:$HOME/.nix-profile/bin:$PATH";
+      PATH = "$HOME/bin:$PATH";
       XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS";
       MANPATH="$HOME/.nix-profile/etc/share/man:$MANPATH";
       LOCALE_ARCHIVE = "${pkgs.glibcLocales}/lib/locale/locale-archive";
@@ -56,8 +57,8 @@ in
     enable = true;
     initExtra = ''
       ${pkgs.dropbox}/bin/dropbox &
-      ${pkgs.networkmanagerapplet}/bin/nm-applet &
-      ${pkgs.blueman}/bin/blueman-applet &
+      nm-applet &
+      blueman-applet &
       ${trayer-wrap}/bin/trayer-wrap &
 
       ${pkgs.feh}/bin/feh --bg-max ${../assets/wallpaper.png}

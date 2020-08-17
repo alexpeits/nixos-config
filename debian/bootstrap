@@ -2,6 +2,15 @@
 
 mkdir -p /etc/X11/xorg.conf.d
 
+cat <<\EOF > /etc/X11/xorg.conf.d/00-keyboard.conf
+Section "InputClass"
+        Identifier "system keyboard"
+        MatchIsKeyboard "on"
+        Option "XkbLayout" "us,gr"
+        Option "XkbOptions" "caps:escape, ctrl:ralt_rctrl, grp:alt_space_toggle"
+EndSection
+EOF
+
 cat <<\EOF > /etc/X11/xorg.conf.d/40-libinput.conf
 Section "InputClass"
         Identifier "libinput touchpad catchall"
