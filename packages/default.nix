@@ -48,7 +48,7 @@ let
       pkgs.gnome3.nautilus
       pkgs.google-chrome
       pkgs.pavucontrol
-      pkgs.postman
+      # pkgs.postman
       pkgs.spotify
       pkgs.vlc
       nixpkgs-unstable.zoom-us
@@ -83,7 +83,6 @@ let
       pkgs.jq
       pkgs.ripgrep
 
-      # emacs.emacs
       nixpkgs-unstable.emacs
 
       vale
@@ -111,6 +110,7 @@ let
       pkgs.xorg.xmessage
       trayer-wrap
       tpacpi-bat
+      pkgs.paper-icon-theme
 
       nixpkgs-unstable.xmobar
       xmonad-build
@@ -156,14 +156,17 @@ let
 
       kbconfig
 
-      latex
+      # latex
       # obsidian
 
       # pkgs.dwarf-fortress-packages.dwarf-fortress
-      pkgs.crawlTiles
-      pkgs.brogue
+      # pkgs.crawlTiles
+      # pkgs.brogue
 
       nixpkgs-unstable.godot
+
+      pkgs.steam-run
+      pkgs.steam
     ];
 
 in

@@ -42,6 +42,7 @@ in
       ".ghci".source = ./dotfiles/ghci;
       ".latexmkrc".text = ''$pdf_previewer = "start evince";'';
       ".local/share/applications/org-protocol.desktop".source = ./dotfiles/org-protocol.desktop;
+      ".config/gtk-3.0/settings.ini".source = ./dotfiles/gtk3-settings.ini;
     };
     sessionVariables = {
       PATH = "$HOME/.local/bin:$HOME/bin:$PATH";

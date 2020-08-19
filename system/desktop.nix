@@ -18,7 +18,6 @@ in
         enable = true;
         wayland = false;
       };
-      sddm.enable = lib.mkForce false;
       sessionCommands = ''
         ${pkgs.dropbox}/bin/dropbox &
         ${pkgs.networkmanagerapplet}/bin/nm-applet &
@@ -32,14 +31,7 @@ in
         ${pkgs.xorg.xset}/bin/xset dpms 0 0 600
       '';
     };
-
-    desktopManager.plasma5.enable = lib.mkForce false;
-
-    windowManager = {
-      xmonad = {
-        enable = true;
-      };
-    };
+    windowManager.xmonad.enable = true;
   };
 
   services.gnome3.gnome-keyring.enable = true;
