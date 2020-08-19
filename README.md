@@ -89,6 +89,10 @@ services.xserver = {
   desktopManager.plasma5.enable = true;  # or xfce or whatever
   # or
   # windowManager.xmonad.enable = true;
+
+  # to be able to mount an external drive to get secrets etc. for cloning from gh
+  boot.supportedFilesystems = [ "ntfs" ];
+
 };
 ```
 
