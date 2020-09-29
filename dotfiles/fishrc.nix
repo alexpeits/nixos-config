@@ -87,6 +87,18 @@ let
     set -g fish_pager_color_progress brwhite --background=cyan
   '';
 
+  mac-extra = ''
+  switch (uname)
+    case Darwin
+      if test -e "$HOME/.nix-profile/etc/profile.d/nix.sh"
+        fenv source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+      end
+      if test -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+        fenv source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+      end
+  end
+  '';
+
 in
 
 {
@@ -207,5 +219,7 @@ in
 
       set_color normal
     end
+
+    ${mac-extra}
   '';
 }

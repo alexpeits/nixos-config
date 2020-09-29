@@ -76,6 +76,20 @@ let
     }
   '';
 
+  mac-extra = ''
+    case $(uname) in
+      Darwin)
+        if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+          source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+        fi
+
+        if [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
+          source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+        fi
+        ;;
+    esac
+  '';
+
 in
 
 ''
@@ -87,8 +101,16 @@ in
     source $HOME/.local-zshrc
   fi
 
+  npm() {
+    if [ -x npm ]; then
+        command npm $*
+    else
+        nvminit && command npm $*
+    fi
+  }
+
   nvminit() {
-    unset -f npm
+    unfunction npm
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
   }
@@ -123,7 +145,6 @@ in
   PROMPT='$(build_prompt)%{$fg[green]%}%~%{$reset_color%}$(git_super_status) %(!.''${root_ret_status}.''${ret_status})%{$reset_color%} '
   PROMPT2='%{$fg[green]%}┌─╼ %{$reset_color%}$(build_prompt)%{$fg[green]%}%~%{$reset_color%}$(git_super_status)
   %{$fg[green]%}└╼ %(!.''${root_ret_status}.''${ret_status})%{$reset_color%} '
-  RPROMPT='[%T]'
 
   switch_prompts() {
       local tmp=$PROMPT
@@ -137,4 +158,6 @@ in
   if [[ -o interactive ]]; then
     stty -ixon -ixoff
   fi
+
+  ${mac-extra}
 ''
