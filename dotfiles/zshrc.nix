@@ -62,7 +62,7 @@ in
 
   source ${git-prompt-src}/git-prompt.zsh
 
-  ZSH_THEME_GIT_PROMPT_PREFIX=" ("
+  ZSH_THEME_GIT_PROMPT_PREFIX="("
   ZSH_THEME_GIT_PROMPT_SUFFIX=") "
   ZSH_THEME_GIT_PROMPT_SEPARATOR="|"
   ZSH_THEME_GIT_PROMPT_DETACHED="%{$fg_bold[cyan]%}:"
@@ -91,8 +91,8 @@ in
 
   local ret_status="%(?:%{$fg_bold[green]%}$symb:%{$fg_bold[red]%}$symb)"
   local root_ret_status="%(?:%{$fg_bold[green]%}#:%{$fg_bold[red]%}#)"
-  PROMPT='$(build_prompt)%{$fg[green]%}%~%{$reset_color%}$(gitprompt)%(!.''${root_ret_status}.''${ret_status})%{$reset_color%} '
-  PROMPT2='%{$fg[green]%}┌─╼ %{$reset_color%}$(build_prompt)%{$fg[green]%}%~%{$reset_color%}$(gitprompt)
+  PROMPT='$(build_prompt)%{$fg[green]%}%~%{$reset_color%} $(gitprompt)%(!.''${root_ret_status}.''${ret_status})%{$reset_color%} '
+  PROMPT2='%{$fg[green]%}┌─╼ %{$reset_color%}$(build_prompt)%{$fg[green]%}%~%{$reset_color%} $(gitprompt)
   %{$fg[green]%}└╼ %(!.''${root_ret_status}.''${ret_status})%{$reset_color%} '
 
   switch_prompts() {
