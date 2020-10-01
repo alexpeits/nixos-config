@@ -1,9 +1,19 @@
 { pkgs, lib, ... }:
 
+let
+
+  scripts = pkgs.callPackage ../dotfiles/scripts.nix {};
+
+in
+
 {
   imports = [./common.nix];
 
   home = {
+    file = {
+      # ~/bin
+      "bin/hm" = { text = scripts.hm; executable = true; };
+    };
     packages =  with pkgs; [
       htop
       tree

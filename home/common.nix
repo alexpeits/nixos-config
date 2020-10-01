@@ -23,12 +23,14 @@ in
 
       # tmux & tmate
       ".tmux.conf".text = pkgs.callPackage ../dotfiles/tmux-conf.nix { tmate = false; };
+      ".tmate.conf".text = pkgs.callPackage ../dotfiles/tmux-conf.nix { tmate = true; };
 
       # ~/bin
       "bin/cookie" = { text = scripts.cookie; executable = true; };
       "bin/gen-gitignore" = { text = scripts.gen-gitignore; executable = true; };
 
       # others
+      ".ghci".source = ../dotfiles/ghci;
     };
     sessionVariables = {
       PATH = "$HOME/.local/bin:$HOME/bin:$PATH";

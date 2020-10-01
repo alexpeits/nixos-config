@@ -15,12 +15,10 @@ in
 
   home = {
     file = {
-      ".tmate.conf".text = pkgs.callPackage ../dotfiles/tmux-conf.nix { tmate = true; };
       "bin/em" = { text = scripts.em; executable = true; };
       "bin/magit" = { text = scripts.magit; executable = true; };
       "bin/session-quit" = { text = scripts.session-quit; executable = true; };
       ".config/rofi/config.rasi".source = ../dotfiles/rofi;
-      ".ghci".source = ../dotfiles/ghci;
       ".latexmkrc".text = ''$pdf_previewer = "start evince";'';
       ".local/share/applications/org-protocol.desktop".source = ../dotfiles/org-protocol.desktop;
       ".config/gtk-3.0/settings.ini".source = ../dotfiles/gtk3-settings.ini;

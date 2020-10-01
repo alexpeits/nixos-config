@@ -233,6 +233,46 @@ in
     esac
   '';
 
+  hm = ''
+    ${shebang}
+
+    usage() {
+        cat <<EOF
+    Run home-manager commands
+
+    Usage:
+
+      -b, --build, b, build:      Build hm configuration
+      -s, --switch, s, switch:    Build hm configuration and switch to it
+      -h, --help, h, help:        This help message
+    EOF
+    }
+
+    build() {
+        make -C $HOME/Git/nixos-config/mac build
+    }
+
+    switch() {
+        make -C $HOME/Git/nixos-config/mac switch
+    }
+
+    case "$1" in
+        -b | --build | b | build)
+            build
+            ;;
+        -s |--switch | s | switch)
+            switch
+            ;;
+        -h | --help | h | help)
+            usage
+            ;;
+        *)
+            usage
+            exit 1
+            ;;
+    esac
+  '';
+
   xmonad-init = ''
     ${shebang}
     ${ensure-binary-exists "xmonad"}
