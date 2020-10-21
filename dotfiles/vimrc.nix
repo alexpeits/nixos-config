@@ -18,37 +18,40 @@ in
   let g:haskell_backpack = 1                " highlighting backpack keywords
   let g:haskell_indent_disable = 1
 
-  " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  set rtp+=~/.vim/bundle/Vundle.vim
-  set rtp+=${fzf-plugin}
+  " install vim-plug if not installed
+  if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync
+  endif
 
-  call vundle#begin()
-  Plugin 'VundleVim/Vundle.vim'
+  call plug#begin('~/.vim/vimplug')
 
   " plugins
-  Plugin 'Raimondi/delimitMate'
-  Plugin 'airblade/vim-gitgutter'
-  Plugin 'christoomey/vim-tmux-navigator'
-  Plugin 'google/vim-searchindex'
-  Plugin 'junegunn/fzf.vim'
-  Plugin 'scrooloose/nerdcommenter'
-  Plugin 'tpope/vim-surround'
+  Plug 'Raimondi/delimitMate'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'google/vim-searchindex'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'tpope/vim-surround'
 
   " filetypes
-  Plugin 'LnL7/vim-nix'
-  Plugin 'leafgarland/typescript-vim'
-  Plugin 'neovimhaskell/haskell-vim'
-  Plugin 'peitalin/vim-jsx-typescript'
-  Plugin 'chr4/nginx.vim'
-  Plugin 'tpope/vim-markdown'
-  Plugin 'Vimjas/vim-python-pep8-indent'
+  Plug 'LnL7/vim-nix'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'neovimhaskell/haskell-vim'
+  Plug 'peitalin/vim-jsx-typescript'
+  Plug 'chr4/nginx.vim'
+  Plug 'tpope/vim-markdown'
+  Plug 'Vimjas/vim-python-pep8-indent'
 
   " themes & ui
-  Plugin 'jonathanfilip/vim-lucius'
-  Plugin 'vim-airline/vim-airline'
-  Plugin 'vim-airline/vim-airline-themes'
+  Plug 'jonathanfilip/vim-lucius'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
 
-  call vundle#end()
+  call plug#end()
 
 
   """""""""""""""""""""""""""""""""
