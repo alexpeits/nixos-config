@@ -15,5 +15,5 @@ pkgs.mkShell {
   ];
   NIX_PATH =
     let s = sources; in
-    "nixpkgs=${s.channels-nixos}:nixpkgs-unstable=${s.nixpkgs-unstable}:home-manager=${s.home-manager}";
+    "nixpkgs=${s.nixpkgs-unstable}:nixpkgs-unstable=${s.nixpkgs-unstable}:home-manager=${s.home-manager}";
 }

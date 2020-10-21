@@ -44,6 +44,7 @@ in
     userName = "Alexandros Peitsinis";
     userEmail = "alexpeitsinis@gmail.com";
     aliases = {
+      root = "rev-parse --show-toplevel";
       ls = ''log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative'';
       lr = ''log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative'';
       ll = "log --graph --decorate --pretty=oneline --abbrev-commit";

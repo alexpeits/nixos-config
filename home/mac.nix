@@ -12,6 +12,9 @@ in
 {
   imports = [./common.nix];
 
+  manual.manpages.enable = lib.mkForce false;
+  manual.html.enable = lib.mkForce false;
+
   home = {
     file = {
       # ~/bin
@@ -30,10 +33,11 @@ in
       tmux
       vim
 
-      # niv
-      # cachix
-      # nix-prefetch-git
-      nixpkgs-fmt
+      nixpkgs-unstable.niv
+      nixpkgs-unstable.lorri
+      nixpkgs-unstable.cachix
+      nixpkgs-unstable.nix-prefetch-git
+      nixpkgs-unstable.nixpkgs-fmt
 
       nixpkgs-unstable.ghc
       nixpkgs-unstable.cabal2nix
