@@ -20,7 +20,9 @@ in
       # ~/bin
       "bin/hm" = { text = scripts.hm; executable = true; };
     };
-    packages =  with pkgs; [
+    packages =  with nixpkgs-unstable; [
+      entr
+      graphviz
       htop
       tree
       wget
@@ -33,20 +35,26 @@ in
       tmux
       vim
 
-      nixpkgs-unstable.niv
-      nixpkgs-unstable.lorri
-      nixpkgs-unstable.cachix
-      nixpkgs-unstable.nix-prefetch-git
-      nixpkgs-unstable.nixpkgs-fmt
+      niv
+      lorri
+      cachix
+      nix-prefetch-git
+      nixpkgs-fmt
 
-      nixpkgs-unstable.ghc
-      nixpkgs-unstable.cabal2nix
-      nixpkgs-unstable.cabal-install
-      nixpkgs-unstable.stack
-      nixpkgs-unstable.haskellPackages.fast-tags
-      nixpkgs-unstable.haskellPackages.hlint
-      nixpkgs-unstable.haskellPackages.ghcid
-      nixpkgs-unstable.haskellPackages.ormolu
+      git-crypt
+
+      ghc
+      cabal2nix
+      cabal-install
+      stack
+      haskellPackages.fast-tags
+      haskellPackages.hlint
+      haskellPackages.ghcid
+      haskellPackages.ormolu
+
+      coq
+      ocaml
+      opam
     ];
   };
 
