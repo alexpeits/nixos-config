@@ -17,6 +17,10 @@ let
     fi
   '';
 
+  ensure-env-var = var: let v = "$" + "${var}"; in ''
+    [ -z "${v}" ] && echo "${var} is not set" && exit 1
+  '';
+
   rofi-runner = pkgs.writeScriptBin "rofi-runner" ''
     ${shebang}
     cat "$1" \
@@ -248,12 +252,14 @@ in
     EOF
     }
 
+    ${ensure-env-var "NIXOS_CONFIG"}
+
     build() {
-        make -C $HOME/Git/nixos-config/mac build
+        make -C $NIXOS_CONFIG/mac build
     }
 
     switch() {
-        make -C $HOME/Git/nixos-config/mac switch
+        make -C $NIXOS_CONFIG/mac switch
     }
 
     case "$1" in

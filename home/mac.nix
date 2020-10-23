@@ -20,6 +20,9 @@ in
       # ~/bin
       "bin/hm" = { text = scripts.hm; executable = true; };
     };
+    sessionVariables = {
+      NIXOS_CONFIG = "$HOME/code/nixos-config";
+    };
     packages =  with nixpkgs-unstable; [
       entr
       graphviz
