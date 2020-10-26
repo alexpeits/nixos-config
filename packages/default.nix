@@ -51,7 +51,7 @@ let
       # pkgs.postman
       pkgs.spotify
       pkgs.vlc
-      nixpkgs-unstable.zoom-us
+      # nixpkgs-unstable.zoom-us
 
       pkgs.qutebrowser
 
