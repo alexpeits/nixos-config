@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   # writes to /etc/X11/xorg.conf.d
@@ -23,5 +23,9 @@
         MatchIsTouchpad "on"
       '';
     };
+
+    # wacom
+    wacom.enable = true;
+    modules = [ pkgs.xf86_input_wacom ];
   };
 }

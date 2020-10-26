@@ -10,6 +10,7 @@
     ga = "git add";
     gc = "git c";
     gr = "git reset";
+    lbat = "bat --theme=GitHub";
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../..";

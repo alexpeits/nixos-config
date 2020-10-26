@@ -163,10 +163,10 @@ let
       # pkgs.crawlTiles
       # pkgs.brogue
 
-      nixpkgs-unstable.godot
+      # nixpkgs-unstable.godot
 
       pkgs.steam-run
-      pkgs.steam
+      # pkgs.steam
     ];
 
 in

@@ -312,6 +312,13 @@ in
     };
   };
 
+  services.udiskie = {
+    enable = true;
+    automount = true;
+    notify = true;
+    tray = "auto";
+  };
+
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
