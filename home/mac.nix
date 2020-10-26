@@ -22,6 +22,7 @@ in
     };
     sessionVariables = {
       NIXOS_CONFIG = "$HOME/code/nixos-config";
+      NIX_PATH = "nixpkgs=${sources.nixpkgs-unstable}";
     };
     packages =  with nixpkgs-unstable; [
       entr
