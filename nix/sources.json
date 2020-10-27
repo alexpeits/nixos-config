@@ -23,6 +23,18 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/a26e92a67d884db696792d25dcc44c466a1bc8b4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "nixos-hardware": {
+        "branch": "master",
+        "description": "A collection of NixOS modules covering hardware quirks.",
+        "homepage": "",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "3cffbd596197a99d10d8113860c9ddf5566c2ef3",
+        "sha256": "0bgk09ggvq3psx3f6kl9cvfv8ng54gjvddwmfii2k6zy934rg042",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixos-hardware/archive/3cffbd596197a99d10d8113860c9ddf5566c2ef3.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "nixpkgs-unstable": {
         "branch": "nixpkgs-unstable",
         "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
