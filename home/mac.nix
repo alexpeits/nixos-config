@@ -36,6 +36,8 @@ in
       jq
       ripgrep
 
+      shellcheck
+
       tmux
       vim
 
