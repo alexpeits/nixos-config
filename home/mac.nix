@@ -64,10 +64,6 @@ in
     ];
   };
 
-  programs.git = {
-    userEmail = lib.mkForce "alexandros.peitsinis@fundingcircle.com";
-  };
-
   programs.zsh = {
     initExtraBeforeCompInit = ''
       export ZSH_DISABLE_COMPFIX="true"
