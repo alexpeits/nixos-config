@@ -8,7 +8,7 @@ let
   # TODO: build emacs with a pinned nixpkgs
   emacs = nixpkgs-unstable.emacs27WithPackages (
     epkgs: with epkgs;
-    [ vterm ]
+    [ vterm agda2-mode ]
   );
 
   latex = pkgs.texlive.combine {
@@ -140,7 +140,6 @@ let
 
       pkgs.coq
 
-      nixpkgs-unstable.emacsPackages.agda2-mode
       agda
 
       # pkgs.tlaplusToolbox
