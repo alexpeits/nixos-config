@@ -6,7 +6,10 @@ let
   nixpkgs-unstable = import sources.nixpkgs-unstable { config.allowUnfree = true; };
 
   # TODO: build emacs with a pinned nixpkgs
-  emacs = pkgs.callPackage ./emacs.nix {};
+  emacs = nixpkgs-unstable.emacs27WithPackages (
+    epkgs: with epkgs;
+    [ vterm ]
+  );
 
   latex = pkgs.texlive.combine {
     inherit (pkgs.texlive)
@@ -38,6 +41,7 @@ let
 
   packages =
     [
+      emacs
       pkgs.firefox
       pkgs.gnome3.cheese
       pkgs.deluge
@@ -82,8 +86,6 @@ let
       pkgs.fzf
       pkgs.jq
       pkgs.ripgrep
-
-      nixpkgs-unstable.emacs
 
       vale
 
