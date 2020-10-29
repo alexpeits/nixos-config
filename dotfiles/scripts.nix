@@ -17,6 +17,10 @@ let
     fi
   '';
 
+  ensure-env-var = var: let v = "$" + "${var}"; in ''
+    [ -z "${v}" ] && echo "${var} is not set" && exit 1
+  '';
+
   rofi-runner = pkgs.writeScriptBin "rofi-runner" ''
     ${shebang}
     cat "$1" \
@@ -225,6 +229,48 @@ in
         -c | --cutter)
             shift
             run-cutter "$1"
+            ;;
+        *)
+            usage
+            exit 1
+            ;;
+    esac
+  '';
+
+  hm = ''
+    ${shebang}
+
+    usage() {
+        cat <<EOF
+    Run home-manager commands
+
+    Usage:
+
+      -b, --build, b, build:      Build hm configuration
+      -s, --switch, s, switch:    Build hm configuration and switch to it
+      -h, --help, h, help:        This help message
+    EOF
+    }
+
+    ${ensure-env-var "NIXOS_CONFIG"}
+
+    build() {
+        make -C $NIXOS_CONFIG/mac build
+    }
+
+    switch() {
+        make -C $NIXOS_CONFIG/mac switch
+    }
+
+    case "$1" in
+        -b | --build | b | build)
+            build
+            ;;
+        -s |--switch | s | switch)
+            switch
+            ;;
+        -h | --help | h | help)
+            usage
             ;;
         *)
             usage

@@ -2,78 +2,58 @@
 
 let
 
-  git-prompt = ''
-    # Adapted from code found at <https://gist.github.com/1712320>.
+  is-mac = (pkgs.callPackage ../nix/lib.nix {}).is-mac;
 
-    setopt prompt_subst
-    autoload -U colors && colors # Enable colors in prompt
+  git-prompt-src = pkgs.fetchFromGitHub {
+    owner = "woefe";
+    repo = "git-prompt.zsh";
+    rev = "ea72d8ba6ebca05522e48e6a0f347e219e8ed51f";
+    sha256 = "01pkvmlbcrd77xihwmsv7yb1cplc23d5c6g5pymczp2ix5cv6r61";
+  };
 
-    # Modify the colors and symbols in these variables as desired.
-    GIT_PROMPT_SYMBOL="%{$fg[blue]%}%{$reset_color%}"
-    GIT_PROMPT_PREFIX="("
-    GIT_PROMPT_SUFFIX=")"
-    GIT_PROMPT_OK="%{$fg[green]%}✔%{$reset_color%}"
-    GIT_PROMPT_SEP="%{$reset_color%}|"
-    GIT_PROMPT_AHEAD="%{$fg[red]%}↑NUM%{$reset_color%}"
-    GIT_PROMPT_BEHIND="%{$fg[cyan]%}↓NUM%{$reset_color%}"
-    GIT_PROMPT_MERGING="%{$fg[magenta]%}⚡︎%{$reset_color%}"
-    GIT_PROMPT_UNTRACKED="%{$fg[red]%}•%{$reset_color%}"
-    GIT_PROMPT_MODIFIED="%{$fg[yellow]%}•%{$reset_color%}"
-    GIT_PROMPT_STAGED="%{$fg[green]%}•%{$reset_color%}"
+  vterm-extra = ''
+    if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
+      alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
+    fi
 
-    # Show Git branch/tag, or name-rev if on detached head
-    parse_git_branch() {
-      (git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
-    }
-
-    # Show different symbols as appropriate for various Git repository states
-    parse_git_state() {
-
-      # Compose this value via multiple conditional appends.
-      local GIT_STATE=""
-
-      local NUM_AHEAD="$(git log --oneline @{u}.. 2> /dev/null | wc -l | tr -d ' ')"
-      if [ "$NUM_AHEAD" -gt 0 ]; then
-        GIT_STATE=$GIT_STATE''${GIT_PROMPT_AHEAD//NUM/$NUM_AHEAD}
-      fi
-
-      local NUM_BEHIND="$(git log --oneline ..@{u} 2> /dev/null | wc -l | tr -d ' ')"
-      if [ "$NUM_BEHIND" -gt 0 ]; then
-        GIT_STATE=$GIT_STATE''${GIT_PROMPT_BEHIND//NUM/$NUM_BEHIND}
-      fi
-
-      local GIT_DIR="$(git rev-parse --git-dir 2> /dev/null)"
-      if [ -n $GIT_DIR ] && test -r $GIT_DIR/MERGE_HEAD; then
-        GIT_STATE=$GIT_STATE$GIT_PROMPT_MERGING
-      fi
-
-      if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
-        GIT_STATE=$GIT_STATE$GIT_PROMPT_UNTRACKED
-      fi
-
-      if ! git diff --quiet 2> /dev/null; then
-        GIT_STATE=$GIT_STATE$GIT_PROMPT_MODIFIED
-      fi
-
-      if ! git diff --cached --quiet 2> /dev/null; then
-        GIT_STATE=$GIT_STATE$GIT_PROMPT_STAGED
-      fi
-
-      if [[ -n $GIT_STATE ]]; then
-        echo "$GIT_PROMPT_SEP$GIT_STATE"
+    vterm_printf(){
+      if [ -n "$TMUX" ]; then
+        # Tell tmux to pass the escape sequences through
+        # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
+        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+      elif [ "''${TERM%%-*}" = "screen" ]; then
+        # GNU screen (screen, screen-256color, screen-256color-bce)
+        printf "\eP\e]%s\007\e\\" "$1"
       else
-        echo "$GIT_PROMPT_SEP$GIT_PROMPT_OK"
+        printf "\e]%s\e\\" "$1"
       fi
-
     }
 
-    # If inside a Git repository, print its branch and state
-    git_super_status() {
-      local git_where="$(parse_git_branch)"
-      [ -z "$HIDE_GIT_PROMPT" ] && \
-        [ -n "$git_where" ] && \
-         echo "$GIT_PROMPT_SYMBOL$GIT_PROMPT_PREFIX%{$fg[magenta]%}''${git_where#(refs/heads/|tags/)}%{$reset_color%}$(parse_git_state)$GIT_PROMPT_SUFFIX"
+    vterm_cmd() {
+      local vterm_elisp
+      vterm_elisp=""
+      while [ $# -gt 0 ]; do
+        vterm_elisp="$vterm_elisp""$(printf '"%s" ' "$(printf "%s" "$1" | sed -e 's|\\|\\\\|g' -e 's|"|\\"|g')")"
+        shift
+      done
+      vterm_printf "51;E$vterm_elisp"
     }
+
+    find_file() {
+      vterm_cmd find-file "$(realpath "''${@:-.}")"
+    }
+
+    alias ff=find_file
+  '';
+
+  mac-extra = ''
+    if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+      source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+    fi
+
+    if [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
+      source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+    fi
   '';
 
 in
@@ -87,8 +67,16 @@ in
     source $HOME/.local-zshrc
   fi
 
+  npm() {
+    if [ -x npm ]; then
+        command npm $*
+    else
+        nvminit && command npm $*
+    fi
+  }
+
   nvminit() {
-    unset -f npm
+    unfunction npm
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
   }
@@ -105,7 +93,25 @@ in
   # prompt #
   ##########
 
-  ${git-prompt}
+  source ${git-prompt-src}/git-prompt.zsh
+
+  ZSH_THEME_GIT_PROMPT_PREFIX="("
+  ZSH_THEME_GIT_PROMPT_SUFFIX=") "
+  ZSH_THEME_GIT_PROMPT_SEPARATOR="|"
+  ZSH_THEME_GIT_PROMPT_DETACHED="%{$fg[cyan]%}:"
+  ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
+  ZSH_THEME_GIT_PROMPT_UPSTREAM_SYMBOL="%{$fg_bold[yellow]%}⟳ "
+  ZSH_THEME_GIT_PROMPT_UPSTREAM_PREFIX="%{$fg[red]%}(%{$fg[yellow]%}"
+  ZSH_THEME_GIT_PROMPT_UPSTREAM_SUFFIX="%{$fg[red]%})"
+  ZSH_THEME_GIT_PROMPT_BEHIND="↓"
+  ZSH_THEME_GIT_PROMPT_AHEAD="↑"
+  ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[red]%}✖"
+  ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}•"
+  ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[yellow]%}•"
+  ZSH_THEME_GIT_PROMPT_UNTRACKED="•"
+  ZSH_THEME_GIT_PROMPT_STASHED="%{$fg[blue]%}⚑"
+  ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔"
+
 
   build_prompt() {
     local symbols
@@ -115,15 +121,12 @@ in
   }
 
   symb="$"
-  # symb="λ"
-  # symb="»"
 
   local ret_status="%(?:%{$fg_bold[green]%}$symb:%{$fg_bold[red]%}$symb)"
   local root_ret_status="%(?:%{$fg_bold[green]%}#:%{$fg_bold[red]%}#)"
-  PROMPT='$(build_prompt)%{$fg[green]%}%~%{$reset_color%}$(git_super_status) %(!.''${root_ret_status}.''${ret_status})%{$reset_color%} '
-  PROMPT2='%{$fg[green]%}┌─╼ %{$reset_color%}$(build_prompt)%{$fg[green]%}%~%{$reset_color%}$(git_super_status)
+  PROMPT='$(build_prompt)%{$fg[green]%}%~%{$reset_color%} $(gitprompt)%(!.''${root_ret_status}.''${ret_status})%{$reset_color%} '
+  PROMPT2='%{$fg[green]%}┌─╼ %{$reset_color%}$(build_prompt)%{$fg[green]%}%~%{$reset_color%} $(gitprompt)
   %{$fg[green]%}└╼ %(!.''${root_ret_status}.''${ret_status})%{$reset_color%} '
-  RPROMPT='[%T]'
 
   switch_prompts() {
       local tmp=$PROMPT
@@ -137,4 +140,7 @@ in
   if [[ -o interactive ]]; then
     stty -ixon -ixoff
   fi
+
+  ${if is-mac then mac-extra else ""}
+  ${vterm-extra}
 ''
