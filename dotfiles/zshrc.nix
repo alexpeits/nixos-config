@@ -2,6 +2,8 @@
 
 let
 
+  is-mac = (pkgs.callPackage ../nix/lib.nix {}).is-mac;
+
   git-prompt-src = pkgs.fetchFromGitHub {
     owner = "woefe";
     repo = "git-prompt.zsh";
@@ -10,16 +12,20 @@ let
   };
 
   vterm-extra = ''
+    if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
+      alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
+    fi
+
     vterm_printf(){
       if [ -n "$TMUX" ]; then
-          # Tell tmux to pass the escape sequences through
-          # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
-          printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+        # Tell tmux to pass the escape sequences through
+        # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
+        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
       elif [ "''${TERM%%-*}" = "screen" ]; then
-          # GNU screen (screen, screen-256color, screen-256color-bce)
-          printf "\eP\e]%s\007\e\\" "$1"
+        # GNU screen (screen, screen-256color, screen-256color-bce)
+        printf "\eP\e]%s\007\e\\" "$1"
       else
-          printf "\e]%s\e\\" "$1"
+        printf "\e]%s\e\\" "$1"
       fi
     }
 
@@ -41,17 +47,13 @@ let
   '';
 
   mac-extra = ''
-    case $(uname) in
-      Darwin)
-        if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
-          source "$HOME/.nix-profile/etc/profile.d/nix.sh"
-        fi
+    if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+      source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+    fi
 
-        if [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
-          source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-        fi
-        ;;
-    esac
+    if [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
+      source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+    fi
   '';
 
 in
@@ -139,6 +141,6 @@ in
     stty -ixon -ixoff
   fi
 
-  ${mac-extra}
+  ${if is-mac then mac-extra else ""}
   ${vterm-extra}
 ''
