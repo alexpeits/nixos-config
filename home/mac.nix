@@ -3,7 +3,7 @@
 let
 
   sources = import ../nix/sources.nix;
-  nixpkgs-unstable = import sources.nixpkgs-unstable {};
+  nixpkgs-unstable = import sources.nixpkgs-unstable-mac {};
 
   scripts = pkgs.callPackage ../dotfiles/scripts.nix {};
 
