@@ -2,12 +2,12 @@
 
 let
 
-  colors = import ./assets/colors.nix;
+  colors = import ../assets/colors.nix;
 
-  kbconfig = pkgs.callPackage ./packages/tools/kbconfig.nix {};
-  scripts = pkgs.callPackage ./dotfiles/scripts.nix {};
+  kbconfig = pkgs.callPackage ../packages/tools/kbconfig.nix {};
+  scripts = pkgs.callPackage ../dotfiles/scripts.nix {};
 
-  i3lock-wrap = pkgs.callPackage ./packages/tools/i3lock-wrap.nix {};
+  i3lock-wrap = pkgs.callPackage ../packages/tools/i3lock-wrap.nix {};
   lock-cmd = "${i3lock-wrap}/bin/i3lock-wrap";
 
 in
@@ -23,10 +23,10 @@ in
       "bin/session-quit" = { text = scripts.session-quit; executable = true; };
 
       # others
-      ".config/rofi/config.rasi".source = ./dotfiles/rofi;
+      ".config/rofi/config.rasi".source = ../dotfiles/rofi;
       ".latexmkrc".text = ''$pdf_previewer = "start evince";'';
-      ".local/share/applications/org-protocol.desktop".source = ./dotfiles/org-protocol.desktop;
-      ".config/gtk-3.0/settings.ini".source = ./dotfiles/gtk3-settings.ini;
+      ".local/share/applications/org-protocol.desktop".source = ../dotfiles/org-protocol.desktop;
+      ".config/gtk-3.0/settings.ini".source = ../dotfiles/gtk3-settings.ini;
     };
     stateVersion = "20.03";
   };

@@ -3,7 +3,7 @@ let
   config = { allowUnfree = true; };
 
   sources = import ../nix/sources.nix;
-  pkgs = import sources.channels-nixos { config=config; };
+  pkgs = import sources.nixpkgs-unstable { config=config; };
   home-manager = import sources.home-manager { inherit pkgs; };
 
 in

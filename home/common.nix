@@ -2,16 +2,16 @@
 
 let
 
-  profile = pkgs.callPackage ./dotfiles/profile.nix {};
-  colors = import ./assets/colors.nix;
+  profile = pkgs.callPackage ../dotfiles/profile.nix {};
+  colors = import ../assets/colors.nix;
 
-  kbconfig = pkgs.callPackage ./packages/tools/kbconfig.nix {};
-  fishrc = pkgs.callPackage ./dotfiles/fishrc.nix {};
+  kbconfig = pkgs.callPackage ../packages/tools/kbconfig.nix {};
+  fishrc = pkgs.callPackage ../dotfiles/fishrc.nix {};
 
-  scripts = pkgs.callPackage ./dotfiles/scripts.nix {};
-  autostart = pkgs.callPackage ./dotfiles/autostart.nix {};
+  scripts = pkgs.callPackage ../dotfiles/scripts.nix {};
+  autostart = pkgs.callPackage ../dotfiles/autostart.nix {};
 
-  i3lock-wrap = pkgs.callPackage ./packages/tools/i3lock-wrap.nix {};
+  i3lock-wrap = pkgs.callPackage ../packages/tools/i3lock-wrap.nix {};
   lock-cmd = "${i3lock-wrap}/bin/i3lock-wrap";
 
 in
@@ -24,11 +24,11 @@ in
   home = {
     file = {
       # vim
-      ".vimrc".text = pkgs.callPackage ./dotfiles/vimrc.nix {};
+      ".vimrc".text = pkgs.callPackage ../dotfiles/vimrc.nix {};
 
       # tmux & tmate
-      ".tmux.conf".text = pkgs.callPackage ./dotfiles/tmux-conf.nix { tmate = false; };
-      ".tmate.conf".text = pkgs.callPackage ./dotfiles/tmux-conf.nix { tmate = true; };
+      ".tmux.conf".text = pkgs.callPackage ../dotfiles/tmux-conf.nix { tmate = false; };
+      ".tmate.conf".text = pkgs.callPackage ../dotfiles/tmux-conf.nix { tmate = true; };
 
       # ~/bin
       "bin/cookie" = { text = scripts.cookie; executable = true; };
