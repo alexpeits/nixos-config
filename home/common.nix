@@ -41,6 +41,7 @@ in
       PATH = "$HOME/.local/bin:$HOME/bin:$PATH";
       EDITOR = "vim";
       LESS = "-r";
+      EXA_COLORS = "uu=0;36:gu=036:da=1;30";
     };
   };
 

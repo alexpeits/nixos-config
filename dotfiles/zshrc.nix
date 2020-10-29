@@ -39,17 +39,11 @@ let
       vterm_printf "51;E$vterm_elisp"
     }
 
-    find_file() {
-      vterm_cmd find-file "$(realpath "''${@:-.}")"
-    }
-
-    magit_commit() {
-      vterm_cmd magit-commit-create
-    }
-
     if [ "$INSIDE_EMACS" = "vterm" ]; then
+      find_file() {
+        vterm_cmd find-file "$(realpath "''${@:-.}")"
+      }
       alias ff=find_file
-      alias magitc=magit_commit
     fi
   '';
 

@@ -15,5 +15,8 @@
     "..." = "cd ../..";
     "...." = "cd ../../..";
     "....." = "cd ../../../..";
+    # testing
+    tree = "exa --color=always --tree";
+    ls = "exa --color=always --group-directories-first";
   };
 }
