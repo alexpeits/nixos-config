@@ -127,12 +127,18 @@ let
       vterm_printf '51;E'(string join "" $vterm_elisp)
     end
 
-    function find_file
-      set -q argv[1]; or set argv[1] "."
-      vterm_cmd find-file (realpath "$argv")
-    end
+    if [ "$INSIDE_EMACS" = 'vterm' ]
+      function find_file
+        set -q argv[1]; or set argv[1] "."
+        vterm_cmd find-file (realpath "$argv")
+      end
+      alias ff=find_file
 
-    alias ff=find_file
+      function magit_commit
+        vterm_cmd magit-commit-create
+      end
+      alias magitc=magit_commit
+    end
   '';
 
 in

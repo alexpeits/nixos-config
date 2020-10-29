@@ -43,7 +43,14 @@ let
       vterm_cmd find-file "$(realpath "''${@:-.}")"
     }
 
-    alias ff=find_file
+    magit_commit() {
+      vterm_cmd magit-commit-create
+    }
+
+    if [ "$INSIDE_EMACS" = "vterm" ]; then
+      alias ff=find_file
+      alias magitc=magit_commit
+    fi
   '';
 
   mac-extra = ''
