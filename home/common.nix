@@ -35,7 +35,7 @@ in
       "bin/gen-gitignore" = { text = scripts.gen-gitignore; executable = true; };
 
       # others
-      ".ghci".source = ./dotfiles/ghci;
+      ".ghci".source = ../dotfiles/ghci;
     };
     sessionVariables = {
       PATH = "$HOME/.local/bin:$HOME/bin:$PATH";
@@ -93,7 +93,7 @@ in
       "checkjobs"
     ];
     shellAliases = profile.aliases;
-    initExtra = pkgs.callPackage ./dotfiles/bashrc.nix {};
+    initExtra = pkgs.callPackage ../dotfiles/bashrc.nix {};
   };
 
   programs.zsh = {
@@ -106,7 +106,7 @@ in
       ignoreDups = true;
       share = true;
     };
-    initExtra = pkgs.callPackage ./dotfiles/zshrc.nix {};
+    initExtra = pkgs.callPackage ../dotfiles/zshrc.nix {};
     shellAliases = profile.aliases;
     oh-my-zsh = {
       enable = true;
