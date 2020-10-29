@@ -16,4 +16,9 @@
       }
     );
 
+  is-mac =
+    builtins.any
+      (arch: builtins.currentSystem == arch)
+      [ "x86_64-darwin"];
+
 }

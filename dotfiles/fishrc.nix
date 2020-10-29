@@ -2,6 +2,8 @@
 
 let
 
+  is-mac = (pkgs.callPackage ../nix/lib.nix {}).is-mac;
+
   edit-cmd = ''
     function edit_cmd --description 'Edit cmdline in editor'
       set -l f (mktemp --tmpdir=.)
@@ -85,6 +87,58 @@ let
     set -g fish_pager_color_description B3A06D
     set -g fish_pager_color_prefix cyan --underline
     set -g fish_pager_color_progress brwhite --background=cyan
+  '';
+
+  mac-extra = ''
+    if test -e "$HOME/.nix-profile/etc/profile.d/nix.sh"
+      fenv source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+    end
+    if test -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+      fenv source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+    end
+  '';
+
+  vterm-extra = ''
+    if [ "$INSIDE_EMACS" = 'vterm' ]
+      function clear
+        vterm_printf "51;Evterm-clear-scrollback";
+        tput clear;
+      end
+    end
+
+    function vterm_printf;
+      if [ -n "$TMUX" ]
+        # tell tmux to pass the escape sequences through
+        # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
+        printf "\ePtmux;\e\e]%s\007\e\\" "$argv"
+      else if string match -q -- "screen*" "$TERM"
+        # GNU screen (screen, screen-256color, screen-256color-bce)
+        printf "\eP\e]%s\007\e\\" "$argv"
+      else
+        printf "\e]%s\e\\" "$argv"
+      end
+    end
+
+    function vterm_cmd --description 'Run an emacs command from vterm-eval-cmds.'
+      set -l vterm_elisp ()
+      for arg in $argv
+        set -a vterm_elisp (printf '"%s" ' (string replace -a -r '([\\\\"])' '\\\\\\\\$1' $arg))
+      end
+      vterm_printf '51;E'(string join "" $vterm_elisp)
+    end
+
+    if [ "$INSIDE_EMACS" = 'vterm' ]
+      function find_file
+        set -q argv[1]; or set argv[1] "."
+        vterm_cmd find-file (realpath "$argv")
+      end
+      alias ff=find_file
+
+      function magit_commit
+        vterm_cmd magit-commit-create
+      end
+      alias magitc=magit_commit
+    end
   '';
 
 in
@@ -207,5 +261,8 @@ in
 
       set_color normal
     end
+
+    ${if is-mac then mac-extra else ""}
+    ${vterm-extra}
   '';
 }
