@@ -12,8 +12,8 @@ in
 {
   imports = [./common.nix];
 
-  manual.manpages.enable = lib.mkForce false;
-  manual.html.enable = lib.mkForce false;
+  # manual.manpages.enable = lib.mkForce false;
+  # manual.html.enable = lib.mkForce false;
 
   home = {
     file = {

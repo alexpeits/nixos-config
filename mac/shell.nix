@@ -1,10 +1,12 @@
 let
 
-  config = { allowUnfree = true; };
-
   sources = import ../nix/sources.nix;
-  pkgs = import sources.nixpkgs-unstable-mac { config=config; };
-  home-manager = import sources.home-manager { inherit pkgs; };
+
+  nixpkgs-src = sources.nixpkgs-unstable-mac;
+  hm-src = sources.home-manager-mac;
+
+  pkgs = import nixpkgs-src { config.allowUnfree = true; };
+  home-manager = import hm-src { inherit pkgs; };
 
 in
 
@@ -14,5 +16,5 @@ pkgs.mkShell {
     home-manager.home-manager
   ];
   NIX_PATH =
-    "nixpkgs=${sources.nixpkgs-unstable-mac}:home-manager=${sources.home-manager}";
+    "nixpkgs=${nixpkgs-src}:home-manager=${hm-src}";
 }
