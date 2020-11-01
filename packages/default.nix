@@ -56,6 +56,8 @@ let
       pkgs.spotify
       pkgs.vlc
       # nixpkgs-unstable.zoom-us
+      nixpkgs-unstable.write_stylus
+      pkgs.wacomtablet
 
       pkgs.qutebrowser
 
