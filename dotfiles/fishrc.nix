@@ -137,7 +137,7 @@ let
       function magit_commit
         vterm_cmd magit-commit-create
       end
-      alias magitc=magit_commit
+      alias gitc=magit_commit
     end
   '';
 

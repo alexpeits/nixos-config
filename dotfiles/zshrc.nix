@@ -44,6 +44,11 @@ let
         vterm_cmd find-file "$(realpath "''${@:-.}")"
       }
       alias ff=find_file
+
+      magit_commit() {
+        vterm_cmd magit-commit-create
+      }
+      alias gitc=magit_commit
     fi
   '';
 
