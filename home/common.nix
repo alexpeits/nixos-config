@@ -1,21 +1,20 @@
 { pkgs, lib, ... }:
-
 let
+  is-mac = (pkgs.callPackage ../nix/lib.nix { }).is-mac;
 
-  profile = pkgs.callPackage ../dotfiles/profile.nix {};
+  profile = pkgs.callPackage ../dotfiles/profile.nix { };
   colors = import ../assets/colors.nix;
 
-  kbconfig = pkgs.callPackage ../packages/tools/kbconfig.nix {};
-  fishrc = pkgs.callPackage ../dotfiles/fishrc.nix {};
+  kbconfig = pkgs.callPackage ../packages/tools/kbconfig.nix { };
+  fishrc = pkgs.callPackage ../dotfiles/fishrc.nix { };
 
-  scripts = pkgs.callPackage ../dotfiles/scripts.nix {};
-  autostart = pkgs.callPackage ../dotfiles/autostart.nix {};
+  scripts = pkgs.callPackage ../dotfiles/scripts.nix { };
+  autostart = pkgs.callPackage ../dotfiles/autostart.nix { };
 
-  i3lock-wrap = pkgs.callPackage ../packages/tools/i3lock-wrap.nix {};
+  i3lock-wrap = pkgs.callPackage ../packages/tools/i3lock-wrap.nix { };
   lock-cmd = "${i3lock-wrap}/bin/i3lock-wrap";
 
 in
-
 {
   # home-manager manual
   manual.manpages.enable = true;
@@ -24,7 +23,7 @@ in
   home = {
     file = {
       # vim
-      ".vimrc".text = pkgs.callPackage ../dotfiles/vimrc.nix {};
+      ".vimrc".text = pkgs.callPackage ../dotfiles/vimrc.nix { };
 
       # tmux & tmate
       ".tmux.conf".text = pkgs.callPackage ../dotfiles/tmux-conf.nix { tmate = false; };
@@ -92,21 +91,31 @@ in
           sha256 = "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs";
         };
       }
+      {
+        name = "nvm.fish";
+        src = pkgs.fetchFromGitHub {
+          owner = "jorgebucaran";
+          repo = "nvm.fish";
+          rev = "5c9bae23b0d71fb4f70bc0403ad42fa19bc506bf";
+          sha256 = "19kqsf36znqn30jl9i244qchxkn04jgnqlscsr9gkpbwqw6ax002";
+        };
+      }
     ];
   };
 
-  programs.bash = {
-    enable = true;
-    historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
-    shellOptions = [
-      "histappend"
-      "extglob"
-      "globstar"
-      "checkjobs"
-    ];
-    shellAliases = profile.aliases;
-    initExtra = pkgs.callPackage ../dotfiles/bashrc.nix {};
-  };
+  programs.bash =
+    let linuxOnlyOpts = ["globstar" "checkjobs"];
+    in
+    {
+      enable = true;
+      historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
+      shellOptions = [
+        "histappend"
+        "extglob"
+      ] ++ (if is-mac then [] else linuxOnlyOpts);
+      shellAliases = profile.aliases;
+      initExtra = pkgs.callPackage ../dotfiles/bashrc.nix { };
+    };
 
   programs.zsh = {
     enable = true;
@@ -118,7 +127,7 @@ in
       ignoreDups = true;
       share = true;
     };
-    initExtra = pkgs.callPackage ../dotfiles/zshrc.nix {};
+    initExtra = pkgs.callPackage ../dotfiles/zshrc.nix { };
     shellAliases = profile.aliases;
     oh-my-zsh = {
       enable = true;

@@ -35,4 +35,6 @@ in
 
   # disable C-s and C-q if interactive
   [[ $- == *i* ]] && stty -ixon -ixoff
+
+  ${import ./nvm-lazy-load.nix}
 ''

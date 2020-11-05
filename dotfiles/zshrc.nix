@@ -73,20 +73,6 @@ in
     source $HOME/.local-zshrc
   fi
 
-  npm() {
-    if [ -x npm ]; then
-        command npm $*
-    else
-        nvminit && command npm $*
-    fi
-  }
-
-  nvminit() {
-    unfunction npm
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-  }
-
   hs() {
     eval "nix-shell -p 'haskellPackages.ghcWithPackages (pkgs: with pkgs; [ $@ ])'"
   }
@@ -149,4 +135,5 @@ in
 
   ${if is-mac then mac-extra else ""}
   ${vterm-extra}
+  ${import ./nvm-lazy-load.nix}
 ''
