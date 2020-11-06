@@ -73,6 +73,7 @@ in
       ".projectile"
       ".dir-locals.el"
       "*.swp"
+      ".my/"
     ];
   };
 
