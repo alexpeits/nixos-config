@@ -124,6 +124,7 @@ in
   " fzf
   let g:fzf_layout = { 'down': '~20%' }
   nnoremap <C-p> :Files<CR>
+  nnoremap <C-s> :Rg<CR>
   nnoremap <leader>f :GFiles<CR>
   nnoremap <leader>b :Buffers<CR>
   nnoremap <leader>s :Rg<CR>
