@@ -1,16 +1,13 @@
 { pkgs, lib, ... }:
-
 let
-
   sources = import ../nix/sources.nix;
-  nixpkgs-unstable = import sources.nixpkgs-unstable-mac {};
+  nixpkgs-unstable = import sources.nixpkgs-unstable-mac { };
 
-  scripts = pkgs.callPackage ../dotfiles/scripts.nix {};
+  scripts = pkgs.callPackage ../dotfiles/scripts.nix { };
 
 in
-
 {
-  imports = [./common.nix];
+  imports = [ ./common.nix ];
 
   # manual.manpages.enable = lib.mkForce false;
   # manual.html.enable = lib.mkForce false;
@@ -24,7 +21,7 @@ in
       NIXOS_CONFIG = "$HOME/code/nixos-config";
       NIX_PATH = "nixpkgs=${sources.nixpkgs-unstable}";
     };
-    packages =  with nixpkgs-unstable; [
+    packages = with nixpkgs-unstable; [
       entr
       graphviz
       htop
@@ -40,6 +37,10 @@ in
 
       tmux
       vim
+
+      aws
+      kubectl
+      kustomize
 
       niv
       lorri
