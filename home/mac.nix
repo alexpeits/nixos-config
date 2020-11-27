@@ -38,10 +38,6 @@ in
       tmux
       vim
 
-      aws
-      kubectl
-      kustomize
-
       niv
       lorri
       cachix
