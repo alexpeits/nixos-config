@@ -72,8 +72,11 @@ in
     ignores = [
       ".projectile"
       ".dir-locals.el"
-      "*.swp"
       ".my/"
+      ".\\#*"
+      "*~"
+      "*.swp"
+      "*.swo"
     ];
   };
 
