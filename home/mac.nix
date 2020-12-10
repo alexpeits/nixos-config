@@ -44,6 +44,8 @@ in
       nix-prefetch-git
       nixpkgs-fmt
 
+      terraform
+
       git-crypt
 
       ghc
