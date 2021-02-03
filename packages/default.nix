@@ -58,6 +58,10 @@ let
       # nixpkgs-unstable.zoom-us
       nixpkgs-unstable.write_stylus
       pkgs.wacomtablet
+      pkgs.kid3
+      pkgs.picard
+      nixpkgs-unstable.musescore
+      pkgs.arandr
 
       pkgs.qutebrowser
 
