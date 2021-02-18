@@ -33,6 +33,7 @@ in
       jq
       ripgrep
 
+      pandoc
       shellcheck
 
       tmux
