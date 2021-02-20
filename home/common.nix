@@ -35,12 +35,14 @@ in
 
       # others
       ".ghci".source = ../dotfiles/ghci;
+      ".config/ripgrep/ripgreprc".source = ../dotfiles/ripgreprc;
     };
     sessionVariables = {
       PATH = "$HOME/.local/bin:$HOME/bin:$PATH";
       EDITOR = "vim";
       LESS = "-r";
       EXA_COLORS = "uu=0;36:gu=0;36:da=0;37";
+      RIPGREP_CONFIG_PATH = "$HOME/.config/ripgrep/ripgreprc";
     };
   };
 
