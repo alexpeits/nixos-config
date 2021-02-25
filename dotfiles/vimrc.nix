@@ -92,9 +92,9 @@ in
   filetype plugin indent on
   filetype plugin on
 
-  autocmd BufRead,BufNewFile *.html,*.css,*.js,*.jsx,*.ts,*.tsx,*.json,*.nix set tabstop=2
-  autocmd BufRead,BufNewFile *.html,*.css,*.js,*.jsx,*.ts,*.tsx,*.json,*.nix set softtabstop=2
-  autocmd BufRead,BufNewFile *.html,*.css,*.js,*.jsx,*.ts,*.tsx,*.json,*.nix set shiftwidth=2
+  autocmd BufRead,BufNewFile *.html,*.css,*.js,*.jsx,*.ts,*.tsx,*.json,*.nix,*.md,*.mdx set tabstop=2
+  autocmd BufRead,BufNewFile *.html,*.css,*.js,*.jsx,*.ts,*.tsx,*.json,*.nix,*.md,*.mdx set softtabstop=2
+  autocmd BufRead,BufNewFile *.html,*.css,*.js,*.jsx,*.ts,*.tsx,*.json,*.nix,*.md,*.mdx set shiftwidth=2
 
   " jump to last position when opening file
   if has("autocmd")
