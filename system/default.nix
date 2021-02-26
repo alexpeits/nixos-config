@@ -8,6 +8,9 @@
     etc."opt/chrome/policies/managed/external_protocol_dialog.json".text = ''
       {"ExternalProtocolDialogShowAlwaysOpenCheckbox": true}
     '';
+    etc."default/google-chrome".text = ''
+      repo_add_once=false
+    '';
     etc.hosts.mode = "0644";
   };
 
