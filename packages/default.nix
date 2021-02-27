@@ -54,7 +54,7 @@ let
       pkgs.gnome3.nautilus
       pkgs.google-chrome
       pkgs.pavucontrol
-      # pkgs.postman
+      pkgs.postman
       pkgs.spotify
       pkgs.vlc
       # nixpkgs-unstable.zoom-us
