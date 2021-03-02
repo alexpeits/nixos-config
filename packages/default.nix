@@ -163,7 +163,7 @@ let
       pkgs.niv
       pkgs.cachix
       pkgs.nix-prefetch-git
-      pkgs.nixpkgs-fmt
+      nixpkgs-unstable.nixpkgs-fmt
 
       kbconfig
 
