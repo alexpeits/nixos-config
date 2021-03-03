@@ -15,6 +15,7 @@
       enable = true;
       tapping = false;
       disableWhileTyping = true;
+      accelProfile = "flat";
 
       # https://github.com/NixOS/nixpkgs/issues/75007
       naturalScrolling = true;
