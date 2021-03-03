@@ -18,5 +18,6 @@
     # testing
     tree = "exa --color=always --tree";
     ls = "exa --color=always --group-directories-first";
+    cat = "bat --paging=never";
   };
 }
