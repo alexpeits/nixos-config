@@ -35,6 +35,7 @@ in
 
       pandoc
       shellcheck
+      vale
 
       tmux
       vim
