@@ -36,6 +36,7 @@ in
       pandoc
       shellcheck
       vale
+      yamllint
 
       tmux
       vim
