@@ -97,7 +97,7 @@ in
       Service = {
         Type = "simple";
         ExecStart =
-          "${pkgs.python37}/bin/python -m http.server 25001 -b localhost -d %h/org-roam-publish";
+          "${pkgs.python37}/bin/python -m http.server 25001 -b localhost -d %h/code/notes-serve/serve";
         RemainAfterExit = "no";
         Restart = "always";
         RestartSec = "3s";
