@@ -47,6 +47,9 @@ in
       nix-prefetch-git
       nixpkgs-fmt
 
+      dhall
+      dhall-json
+
       terraform
 
       git-crypt
