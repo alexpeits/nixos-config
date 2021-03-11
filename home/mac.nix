@@ -22,6 +22,8 @@ in
       NIX_PATH = "nixpkgs=${sources.nixpkgs-unstable}";
     };
     packages = with nixpkgs-unstable; [
+      bash
+
       entr
       graphviz
       htop
