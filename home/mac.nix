@@ -38,6 +38,7 @@ in
       pandoc
       shellcheck
       vale
+      proselint
       yamllint
 
       tmux
