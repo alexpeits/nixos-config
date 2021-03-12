@@ -40,6 +40,7 @@ in
       vale
       proselint
       yamllint
+      mdl
 
       tmux
       vim
