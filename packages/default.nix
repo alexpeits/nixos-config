@@ -27,10 +27,8 @@ let
   i3lock-wrap = pkgs.callPackage ./tools/i3lock-wrap.nix {};
   kbconfig = pkgs.callPackage ./tools/kbconfig.nix {};
   nixfmt = pkgs.callPackage ./tools/nixfmt.nix {};
-  patat = pkgs.callPackage ./tools/patat.nix {};
   trayer-wrap = pkgs.callPackage ./tools/trayer-wrap.nix {};
   xmonad-build = pkgs.callPackage ./tools/xmonad-build.nix {};
-  vale = pkgs.callPackage ./tools/vale.nix {};
   tpacpi-bat = pkgs.callPackages ./tools/tpacpi-bat.nix {};
 
   obsidian = pkgs.callPackage ./apps/obsidian.nix {};
@@ -95,7 +93,8 @@ let
       pkgs.jq
       pkgs.ripgrep
 
-      vale
+      nixpkgs-unstable.vale
+      nixpkgs-unstable.mdl
 
       nixpkgs-unstable.tmate
       pkgs.tmux
@@ -148,11 +147,11 @@ let
       pkgs.ocaml
       pkgs.opam
 
-      pkgs.coq
+      nixpkgs-unstable.coq_8_12
 
       agda
 
-      # pkgs.tlaplusToolbox
+      pkgs.tlaplusToolbox
 
       # nixpkgs-unstable.rustc
       # nixpkgs-unstable.cargo
