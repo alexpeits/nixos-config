@@ -5,6 +5,17 @@ let
 
   scripts = pkgs.callPackage ../dotfiles/scripts.nix { };
 
+  latex = pkgs.texlive.combine {
+    inherit (pkgs.texlive)
+      scheme-medium
+      collection-fontsextra
+      collection-latexextra
+      ;
+  };
+
+  markdownlint-cli-pkg = pkgs.callPackage ../packages/tools/markdownlint-cli { };
+  markdownlint-cli = markdownlint-cli-pkg.markdownlint-cli;
+
 in
 {
   imports = [ ./common.nix ];
@@ -35,12 +46,15 @@ in
       jq
       ripgrep
 
+      latex
       pandoc
       shellcheck
       vale
       proselint
       yamllint
       mdl
+      asciidoctor
+      markdownlint-cli
 
       tmux
       vim
