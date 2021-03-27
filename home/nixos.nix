@@ -232,7 +232,7 @@ in
         };
         largeFont = mkFont {
           name = "Source Code Pro Medium";
-          size = 11;
+          size = 13;
         };
         dark = {
           default = false;

@@ -13,12 +13,8 @@ let
       ;
   };
 
-  buildNodePackage = (pkgs.callPackage ../packages/lib.nix { }).buildNodePackage;
-  markdownlint-cli = buildNodePackage {
-    pkg = "markdownlint-cli";
-    version = "0.27.1";
-    node-version = 12;
-  };
+  markdownlint-cli-pkgs = pkgs.callPackage ../packages/tools/markdownlint-cli {};
+  markdownlint-cli = markdownlint-cli-pkgs."markdownlint-cli-0.27.1";
 
 in
 {

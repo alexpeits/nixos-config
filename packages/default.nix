@@ -39,6 +39,10 @@ let
 
   dunst = pkgs.dunst.override { dunstify = true; };
 
+  buildNodePackage = (pkgs.callPackage ./lib.nix { }).buildNodePackage;
+  markdownlint-cli-pkgs = pkgs.callPackage ./tools/markdownlint-cli {};
+  markdownlint-cli = markdownlint-cli-pkgs."markdownlint-cli-0.27.1";
+
   packages =
     [
       emacs
@@ -94,7 +98,7 @@ let
       pkgs.ripgrep
 
       nixpkgs-unstable.vale
-      nixpkgs-unstable.mdl
+      markdownlint-cli
 
       nixpkgs-unstable.tmate
       pkgs.tmux
