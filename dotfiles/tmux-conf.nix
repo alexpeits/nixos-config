@@ -35,7 +35,7 @@ in
 
   ${theme}
 
-  set  -g default-terminal "screen-256color"
+  set  -g default-terminal "xterm-256color"
   set  -g base-index      1
   setw -g pane-base-index 1
   setw -g aggressive-resize off
