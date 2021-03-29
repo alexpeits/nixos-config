@@ -14,6 +14,8 @@ let
   i3lock-wrap = pkgs.callPackage ../packages/tools/i3lock-wrap.nix { };
   lock-cmd = "${i3lock-wrap}/bin/i3lock-wrap";
 
+  vim = pkgs.callPackage ../dotfiles/vim.nix { };
+
 in
 {
   # home-manager manual
@@ -23,7 +25,8 @@ in
   home = {
     file = {
       # vim
-      ".vimrc".text = pkgs.callPackage ../dotfiles/vimrc.nix { };
+      ".vimrc".text = vim.vimrc;
+      ".vim/after/syntax/markdown.vim".text = vim.markdown-frontmatter;
 
       # tmux & tmate
       ".tmux.conf".text = pkgs.callPackage ../dotfiles/tmux-conf.nix { tmate = false; };
