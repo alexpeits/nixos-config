@@ -214,6 +214,9 @@ let
     autocmd BufRead,BufNewFile *.purs set softtabstop=2
     autocmd BufRead,BufNewFile *.purs set shiftwidth=2
 
+    " markdown
+    autocmd FileType markdown set colorcolumn=100
+
     if exists("+mouse")
         set mouse=a
     endif
