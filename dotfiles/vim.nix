@@ -156,16 +156,16 @@ let
         highlight ExtraWhitespace ctermbg=88
         highlight haskellBottom ctermfg=Red
         highlight haskellFail ctermfg=LightRed
+        highlight MatchParen guibg=#454857 cterm=bold
         let g:airline_theme='distinguished'
     else
-        let g:lucius_style = 'light'
         set background=light
         colorscheme tempus_dawn
         highlight ExtraWhitespace ctermbg=210
+        highlight MatchParen guibg=#d7dbd5 cterm=bold
         let g:airline_theme='lucius'
     endif
 
-    highlight MatchParen cterm=reverse
     highlight Search cterm=reverse
 
     highlight Character cterm=NONE
