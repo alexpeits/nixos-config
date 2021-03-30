@@ -84,6 +84,11 @@ in
       coq
       ocaml
       opam
+
+      python37Packages.black
+      python37Packages.flake8
+      python37Packages.isort
+      python37Packages.mypy
     ];
   };
 

@@ -150,7 +150,7 @@ let
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
 
-    if empty($TERM_LIGHT)
+    if $TERM_LIGHT != "1"
         set background=dark
         colorscheme tempus_winter
         highlight ExtraWhitespace ctermbg=88
