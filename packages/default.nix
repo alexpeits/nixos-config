@@ -170,7 +170,7 @@ let
 
       kbconfig
 
-      # latex
+      latex
       # obsidian
 
       # pkgs.dwarf-fortress-packages.dwarf-fortress

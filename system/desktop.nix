@@ -25,6 +25,7 @@ in
         ${trayer-wrap}/bin/trayer-wrap &
 
         ${pkgs.feh}/bin/feh --bg-max ${../assets/wallpaper.png}
+        ${pkgs.redshift}/bin/redshift -P -O 4800
 
         ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
         ${pkgs.xorg.xset}/bin/xset s off
