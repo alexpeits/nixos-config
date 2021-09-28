@@ -49,6 +49,7 @@ let
     Plug 'peitalin/vim-jsx-typescript'
     Plug 'chr4/nginx.vim'
     Plug 'tpope/vim-markdown'
+    Plug 'jxnblk/vim-mdx-js'
     Plug 'Vimjas/vim-python-pep8-indent'
 
     " themes & ui
