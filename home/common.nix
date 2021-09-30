@@ -39,6 +39,7 @@ in
       # others
       ".ghci".source = ../dotfiles/ghci;
       ".config/ripgrep/ripgreprc".source = ../dotfiles/ripgreprc;
+      ".config/yamllint/config".source = ../dotfiles/yamllint-conf.yml;
     };
     sessionVariables = {
       PATH = "$HOME/.local/bin:$HOME/bin:$PATH";
