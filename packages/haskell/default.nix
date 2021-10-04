@@ -51,7 +51,7 @@ in
   nixpkgs-unstable.haskellPackages.hlint
   nixpkgs-unstable.haskellPackages.ghcid
   nixpkgs-unstable.haskellPackages.ormolu
-  nixpkgs-unstable.haskellPackages.cabal-edit
+  # nixpkgs-unstable.haskellPackages.cabal-edit
 
   ghc.ghc865
   ghc.ghc881
