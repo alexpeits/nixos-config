@@ -23,7 +23,6 @@ in
       "bin/session-quit" = { text = scripts.session-quit; executable = true; };
 
       # others
-      ".config/rofi/config.rasi".source = ../dotfiles/rofi;
       ".latexmkrc".text = ''$pdf_previewer = "start evince";'';
       ".local/share/applications/org-protocol.desktop".source = ../dotfiles/org-protocol.desktop;
       ".config/gtk-3.0/settings.ini".source = ../dotfiles/gtk3-settings.ini;
@@ -217,6 +216,20 @@ in
       "application/pdf" = "org.gnome.Evince.desktop";
       "audio/mpeg" = "vlc.desktop";
     };
+  };
+
+  programs.rofi = {
+    enable = true;
+    theme = "lb";
+    font = "Iosevka Term 13";
+    terminal = "gnome-terminal";
+    extraConfig = ''
+      matching: "fuzzy";
+      show-icons: true;
+      kb-mode-next: "Alt+m";
+      sort: true;
+      sorting-method: "fzf";
+    '';
   };
 
   programs.gnome-terminal = {

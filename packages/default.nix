@@ -129,8 +129,8 @@ let
       xmonad-build
 
       pkgs.lastpass-cli
-      pkgs.bitwarden
-      pkgs.bitwarden-cli
+      nixpkgs-unstable.bitwarden
+      nixpkgs-unstable.bitwarden-cli
 
       pkgs.audacity
       nixpkgs-unstable.lilypond
