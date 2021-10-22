@@ -66,8 +66,6 @@ in
 
 ''
   # eval "$(stack --bash-completion-script stack)"
-  # export WORKON_HOME=$HOME/.virtualenvs
-  # source ${pkgs.python37Packages.virtualenvwrapper}/bin/virtualenvwrapper_lazy.sh
 
   if [ -f $HOME/.local-zshrc ]; then
     source $HOME/.local-zshrc

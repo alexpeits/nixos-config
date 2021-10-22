@@ -46,7 +46,7 @@ in
       jq
       ripgrep
 
-      latex
+      # latex
       pandoc
       shellcheck
       vale
@@ -54,7 +54,7 @@ in
       yamllint
       mdl
       asciidoctor
-      markdownlint-cli
+      # markdownlint-cli
 
       tmux
       vim
@@ -85,10 +85,10 @@ in
       ocaml
       opam
 
-      python37Packages.black
-      python37Packages.flake8
-      python37Packages.isort
-      python37Packages.mypy
+      python39Packages.black
+      python39Packages.flake8
+      python39Packages.isort
+      python39Packages.mypy
     ];
   };
 

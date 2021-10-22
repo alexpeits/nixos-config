@@ -147,9 +147,6 @@ in
   shellInit = ''
     eval (${pkgs.direnv}/bin/direnv hook fish)
 
-    # export WORKON_HOME=$HOME/.virtualenvs
-    # source ${pkgs.python37Packages.virtualenvwrapper}/bin/virtualenvwrapper_lazy.sh
-
     if test -e $HOME/.local-fishrc
       source $HOME/.local-fishrc
     end
