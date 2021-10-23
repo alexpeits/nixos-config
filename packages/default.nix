@@ -173,6 +173,7 @@ let
 
       # latex
       # obsidian
+      nixpkgs-unstable.logseq
 
       # pkgs.dwarf-fortress-packages.dwarf-fortress
       # pkgs.crawlTiles
