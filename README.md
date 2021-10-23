@@ -1,5 +1,7 @@
 # NixOS configuration
 
+Current version: *21.05*
+
 ## Create a bootable USB drive
 
 - Download NixOS to `$ISO_PATH`
