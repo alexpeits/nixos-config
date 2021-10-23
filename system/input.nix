@@ -13,16 +13,18 @@
     # mouse
     libinput = {
       enable = true;
-      tapping = false;
-      disableWhileTyping = true;
-      accelProfile = "flat";
 
-      # https://github.com/NixOS/nixpkgs/issues/75007
-      naturalScrolling = true;
-      # natural scrolling for touchpad only, not mouse
-      additionalOptions = ''
-        MatchIsTouchpad "on"
-      '';
+      touchpad = {
+        accelProfile = "flat";
+        disableWhileTyping = true;
+        tapping = false;
+        # https://github.com/NixOS/nixpkgs/issues/75007
+        naturalScrolling = true;
+        # natural scrolling for touchpad only, not mouse
+        additionalOptions = ''
+          MatchIsTouchpad "on"
+        '';
+      };
     };
 
     # wacom

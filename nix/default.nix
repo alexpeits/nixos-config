@@ -31,6 +31,7 @@ in
       "nixos-config=/etc/nixos/configuration.nix"
       "nixos-hardware=${sources.nixos-hardware}"
       "nixpkgs-unstable=${sources.nixpkgs-unstable}"
+      "home-manager=${sources.home-manager}"
     ];
   };
 

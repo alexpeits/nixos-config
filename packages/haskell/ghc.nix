@@ -35,7 +35,9 @@ let
 
 in
 rec {
-  ghc865 = ghcQualified pkgs.haskell.compiler.ghc865;
-  ghc881 = ghcQualified pkgs.haskell.compiler.ghc881;
-  ghc865Symlinks = recoverSymlinks ghc865;
+  # ghc865 = ghcQualified pkgs.haskell.compiler.ghc865;
+  # ghc865Symlinks = recoverSymlinks ghc865;
+  # ghc881 = ghcQualified pkgs.haskell.compiler.ghc881;
+  ghc8104 = ghcQualified pkgs.haskell.compiler.ghc8104;
+  ghc8104Symlinks = recoverSymlinks ghc8104;
 }

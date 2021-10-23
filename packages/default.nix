@@ -29,7 +29,7 @@ let
   nixfmt = pkgs.callPackage ./tools/nixfmt.nix {};
   trayer-wrap = pkgs.callPackage ./tools/trayer-wrap.nix {};
   xmonad-build = pkgs.callPackage ./tools/xmonad-build.nix {};
-  tpacpi-bat = pkgs.callPackages ./tools/tpacpi-bat.nix {};
+  tpacpi-bat = pkgs.callPackage ./tools/tpacpi-bat.nix {};
 
   obsidian = pkgs.callPackage ./apps/obsidian.nix {};
 
@@ -37,7 +37,8 @@ let
 
   yarn = pkgs.yarn.override { nodejs = pkgs.nodejs-12_x; };
 
-  dunst = pkgs.dunst.override { dunstify = true; };
+  # dunst = pkgs.dunst.override { dunstify = true; };
+  dunst = pkgs.dunst;
 
   buildNodePackage = (pkgs.callPackage ./lib.nix { }).buildNodePackage;
   markdownlint-cli-pkgs = pkgs.callPackage ./tools/markdownlint-cli {};
@@ -138,12 +139,12 @@ let
 
       # pkgs.scummvm
 
-      pkgs.python37
-      pkgs.python37Packages.black
-      pkgs.python37Packages.flake8
-      pkgs.python37Packages.ipython
-      pkgs.python37Packages.isort
-      pkgs.python37Packages.mypy
+      pkgs.python38
+      pkgs.python38Packages.black
+      pkgs.python38Packages.flake8
+      pkgs.python38Packages.ipython
+      pkgs.python38Packages.isort
+      pkgs.python38Packages.mypy
 
       pkgs.nodejs-12_x
       yarn
@@ -170,7 +171,7 @@ let
 
       kbconfig
 
-      latex
+      # latex
       # obsidian
 
       # pkgs.dwarf-fortress-packages.dwarf-fortress

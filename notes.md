@@ -62,3 +62,28 @@ https://nixos.org/manual/nixos/stable/release-notes.html#sec-release-21.05-incom
 
 - stdenv.lib has been deprecated and will break eval in 21.11. Please use
   pkgs.lib instead. See #108938 for details
+
+- [X] trace: warning: The option `services.xserver.libinput.additionalOptions'
+  defined in `/home/alex/nixos-config/system/input.nix' has been renamed to
+  `services.xserver.libinput.touchpad.additionalOptions'.
+- [X] trace: warning: The option `services.xserver.libinput.disableWhileTyping'
+  defined in `/home/alex/nixos-config/system/input.nix' has been renamed to
+  `services.xserver.libinput.touchpad.disableWhileTyping'.
+- [X] trace: warning: The option `services.xserver.libinput.tapping' defined in
+  `/home/alex/nixos-config/system/input.nix' has been renamed to
+  `services.xserver.libinput.touchpad.tapping'.
+- [X] trace: warning: The option `services.xserver.libinput.naturalScrolling'
+  defined in `/home/alex/nixos-config/system/input.nix' has been renamed to
+  `services.xserver.libinput.touchpad.naturalScrolling'.
+- [X] trace: warning: The option `services.xserver.libinput.accelProfile'
+  defined in `/home/alex/nixos-config/system/input.nix' has been renamed to
+  `services.xserver.libinput.touchpad.accelProfile'.
+- [X] trace: warning: The option `services.gnome3.gnome-keyring.enable' defined
+  in `/home/alex/nixos-config/system/desktop.nix' has been renamed to
+  `services.gnome.gnome-keyring.enable'.
+- [X] trace: warning: Using config.services.tlp.extraConfig is deprecated and
+  will become unsupported in a future release. Use config.services.tlp.settings
+  instead.
+- [X] fish-foreign-env has been replaced with fishPlugins.foreign-env
+
+

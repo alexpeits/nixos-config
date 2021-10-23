@@ -53,7 +53,9 @@ in
   nixpkgs-unstable.haskellPackages.ormolu
   # nixpkgs-unstable.haskellPackages.cabal-edit
 
-  ghc.ghc865
-  ghc.ghc881
-  ghc.ghc865Symlinks
+  # ghc.ghc865
+  # ghc.ghc865Symlinks
+  # ghc.ghc881
+  ghc.ghc8104
+  ghc.ghc8104Symlinks
 ]

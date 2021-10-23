@@ -223,13 +223,13 @@ in
     theme = "lb";
     font = "Iosevka Term 13";
     terminal = "gnome-terminal";
-    extraConfig = ''
-      matching: "fuzzy";
-      show-icons: true;
-      kb-mode-next: "Alt+m";
-      sort: true;
-      sorting-method: "fzf";
-    '';
+    extraConfig = {
+      matching = "fuzzy";
+      show-icons = true;
+      kb-mode-next=  "Alt+m";
+      sort = true;
+      sorting-method = "fzf";
+    };
   };
 
   programs.gnome-terminal = {
