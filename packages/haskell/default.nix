@@ -49,8 +49,8 @@ in
   # cabal-edit
   nixpkgs-unstable.haskellPackages.fast-tags
   nixpkgs-unstable.haskellPackages.hlint
-  nixpkgs-unstable.haskellPackages.ghcid
-  nixpkgs-unstable.haskellPackages.ormolu
+  nixpkgs-unstable.haskellPackages.ghcid.bin
+  nixpkgs-unstable.haskellPackages.ormolu.bin
   # nixpkgs-unstable.haskellPackages.cabal-edit
 
   # ghc.ghc865
