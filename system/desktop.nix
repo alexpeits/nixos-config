@@ -24,7 +24,7 @@ in
         ${pkgs.blueman}/bin/blueman-applet &
         ${trayer-wrap}/bin/trayer-wrap &
 
-        ${pkgs.feh}/bin/feh --bg-max ${../assets/wallpaper.png}
+        ${pkgs.feh}/bin/feh --bg-scale ${../assets/wallpaper}
         ${pkgs.redshift}/bin/redshift -P -O 4800
 
         ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr

@@ -26,9 +26,6 @@ in
       ".latexmkrc".text = ''$pdf_previewer = "start evince";'';
       ".local/share/applications/org-protocol.desktop".source = ../dotfiles/org-protocol.desktop;
       ".config/gtk-3.0/settings.ini".source = ../dotfiles/gtk3-settings.ini;
-
-      # gdm face
-      ".face".source = ../assets/sonny_clark_trio.jpg;
     };
     stateVersion = "20.03";
   };
