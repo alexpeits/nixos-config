@@ -35,7 +35,7 @@ let
 
   haskellPackages = pkgs.callPackage ./haskell {};
 
-  yarn = pkgs.yarn.override { nodejs = pkgs.nodejs-12_x; };
+  yarn = pkgs.yarn.override { nodejs = pkgs.nodejs-14_x; };
 
   # dunst = pkgs.dunst.override { dunstify = true; };
   dunst = pkgs.dunst;
@@ -146,7 +146,7 @@ let
       pkgs.python38Packages.isort
       pkgs.python38Packages.mypy
 
-      pkgs.nodejs-12_x
+      pkgs.nodejs-14_x
       yarn
 
       pkgs.ocaml
