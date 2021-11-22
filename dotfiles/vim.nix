@@ -51,6 +51,7 @@ let
     Plug 'tpope/vim-markdown'
     Plug 'jxnblk/vim-mdx-js'
     Plug 'Vimjas/vim-python-pep8-indent'
+    Plug 'cespare/vim-toml'
 
     " themes & ui
     Plug 'jonathanfilip/vim-lucius'
