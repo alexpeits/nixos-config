@@ -15,7 +15,7 @@
       enable = true;
 
       touchpad = {
-        accelProfile = "flat";
+        accelProfile = "adaptive";
         disableWhileTyping = true;
         tapping = false;
         # https://github.com/NixOS/nixpkgs/issues/75007
