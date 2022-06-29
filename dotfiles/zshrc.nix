@@ -76,7 +76,7 @@ in
   }
 
   py() {
-    eval "nix-shell -p 'python37.withPackages (pkgs: with pkgs; [ ipython $@ ])'"
+    eval "nix-shell -p 'python3.withPackages (pkgs: with pkgs; [ ipython $@ ])'"
   }
 
   ##########
