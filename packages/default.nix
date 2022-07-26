@@ -6,7 +6,7 @@ let
   nixpkgs-unstable = import sources.nixpkgs-unstable { config.allowUnfree = true; };
 
   # TODO: build emacs with a pinned nixpkgs
-  emacs = nixpkgs-unstable.emacs27WithPackages (
+  emacs = nixpkgs-unstable.emacs28WithPackages (
     epkgs: with epkgs;
     [ vterm agda2-mode ]
   );
