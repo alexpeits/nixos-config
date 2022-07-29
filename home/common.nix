@@ -139,6 +139,17 @@ in
     };
     initExtra = pkgs.callPackage ../dotfiles/zshrc.nix { };
     shellAliases = profile.aliases;
+    plugins = [
+      {
+        name = "evalcache";
+        src = pkgs.fetchFromGitHub {
+          owner = "mroth";
+          repo = "evalcache";
+          rev = "4c7fb8d5b319ae177fead3ec666e316ff2e13b90";
+          sha256 = "0vvgq8125n7g59vx618prw1i4lg9h0sb5rd26mkax7nb78cnffmb";
+        };
+      }
+    ];
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" ];
