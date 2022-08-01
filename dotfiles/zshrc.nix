@@ -57,6 +57,10 @@ let
       source "$HOME/.nix-profile/etc/profile.d/nix.sh"
     fi
 
+    if [ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then
+      source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+    fi
+
     if [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
       source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
     fi
@@ -83,8 +87,6 @@ in
   # prompt #
   ##########
 
-  source ${git-prompt-src}/git-prompt.zsh
-
   ZSH_THEME_GIT_PROMPT_PREFIX="("
   ZSH_THEME_GIT_PROMPT_SUFFIX=") "
   ZSH_THEME_GIT_PROMPT_SEPARATOR="|"
@@ -102,29 +104,7 @@ in
   ZSH_THEME_GIT_PROMPT_STASHED="%{$fg[blue]%}⚑"
   ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔"
 
-
-  build_prompt() {
-    local symbols
-    symbols=()
-    [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{white}%}⚙"
-    [[ -n "$symbols" ]] && echo -n "$symbols "
-  }
-
-  symb="$"
-
-  local ret_status="%(?:%{$fg_bold[green]%}$symb:%{$fg_bold[red]%}$symb)"
-  local root_ret_status="%(?:%{$fg_bold[green]%}#:%{$fg_bold[red]%}#)"
-  PROMPT='$(build_prompt)%{$fg[green]%}%~%{$reset_color%} $(gitprompt)%(!.''${root_ret_status}.''${ret_status})%{$reset_color%} '
-  PROMPT2='%{$fg[green]%}┌─╼ %{$reset_color%}$(build_prompt)%{$fg[green]%}%~%{$reset_color%} $(gitprompt)
-  %{$fg[green]%}└╼ %(!.''${root_ret_status}.''${ret_status})%{$reset_color%} '
-
-  switch_prompts() {
-      local tmp=$PROMPT
-      PROMPT=$PROMPT2
-      PROMPT2=$tmp
-  }
-
-  alias sp=switch_prompts
+  source ${git-prompt-src}/git-prompt.zsh
 
   # disable C-s and C-q if interactive
   if [[ -o interactive ]]; then

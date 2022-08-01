@@ -89,7 +89,6 @@ in
   programs.fish = {
     enable = true;
     interactiveShellInit = fishrc.shellInit;
-    promptInit = fishrc.promptInit;
     shellAliases = profile.aliases;
     plugins = [
       {
@@ -165,7 +164,6 @@ in
 
   programs.direnv = {
     enable = true;
-    enableFishIntegration = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
   };

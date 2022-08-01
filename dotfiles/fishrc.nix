@@ -32,7 +32,7 @@ let
 
   prompt-variables = ''
     set -g __fish_git_prompt_show_informative_status 1
-    set -g __fish_git_prompt_hide_untrackedfiles 1
+    set -g __fish_git_prompt_showuntrackedfiles 1
 
     set -g __fish_git_prompt_color_branch magenta
 
@@ -93,6 +93,11 @@ let
     if test -e "$HOME/.nix-profile/etc/profile.d/nix.sh"
       fenv source "$HOME/.nix-profile/etc/profile.d/nix.sh"
     end
+
+    if test -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+      fenv source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+    end
+
     if test -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
       fenv source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
     end
@@ -177,8 +182,8 @@ in
     ${variables}
     ${theme}
     ${disable-keys}
-  '';
-  promptInit = ''
+
+    # promptInit
     ${prompt-variables}
 
     set -g __my_prompt_multiline 0
