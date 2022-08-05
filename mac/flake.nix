@@ -2,9 +2,9 @@
   description = "home-manager configuration using flakes";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?rev=67f49b2a3854e8b5e3f9df4422225daa0985f451";
+    nixpkgs.url = "github:nixos/nixpkgs/67f49b2a3854e8b5e3f9df4422225daa0985f451";
     home-manager = {
-      url = "github:nix-community/home-manager?rev=d1c677ac257affed8d026f418b81ed5de2c8d963";
+      url = "github:nix-community/home-manager/d1c677ac257affed8d026f418b81ed5de2c8d963";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

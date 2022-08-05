@@ -1,9 +1,7 @@
 { pkgs, ... }:
 
 let
-
-  sources = import ../nix/sources.nix;
-  nixpkgs-unstable = import sources.nixpkgs-unstable { config.allowUnfree = true; };
+  nixpkgs-unstable = pkgs.unstable;
 
   # TODO: build emacs with a pinned nixpkgs
   emacs = nixpkgs-unstable.emacs28WithPackages (
@@ -99,7 +97,7 @@ let
       pkgs.ripgrep
 
       nixpkgs-unstable.vale
-      markdownlint-cli
+      # markdownlint-cli
 
       nixpkgs-unstable.tmate
       pkgs.tmux
@@ -139,12 +137,12 @@ let
 
       # pkgs.scummvm
 
-      pkgs.python38
-      pkgs.python38Packages.black
-      pkgs.python38Packages.flake8
-      pkgs.python38Packages.ipython
-      pkgs.python38Packages.isort
-      pkgs.python38Packages.mypy
+      # pkgs.python38
+      # pkgs.python38Packages.black
+      # pkgs.python38Packages.flake8
+      # pkgs.python38Packages.ipython
+      # pkgs.python38Packages.isort
+      # pkgs.python38Packages.mypy
 
       pkgs.nodejs-14_x
       yarn

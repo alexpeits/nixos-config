@@ -16,18 +16,22 @@ in
   imports = [ ./common.nix ];
 
   home = {
+    stateVersion = "21.05";
     file = {
       # ~/bin
       "bin/em" = { text = scripts.em; executable = true; };
       "bin/magit" = { text = scripts.magit; executable = true; };
       "bin/session-quit" = { text = scripts.session-quit; executable = true; };
+      "bin/nixos" = { text = scripts.nixos; executable = true; };
 
       # others
       ".latexmkrc".text = ''$pdf_previewer = "start evince";'';
       ".local/share/applications/org-protocol.desktop".source = ../dotfiles/org-protocol.desktop;
       ".config/gtk-3.0/settings.ini".source = ../dotfiles/gtk3-settings.ini;
     };
-    stateVersion = "20.03";
+    sessionVariables = {
+      NIXOS_CONFIG = "$HOME/nixos-config";
+    };
   };
 
   systemd.user.services = {

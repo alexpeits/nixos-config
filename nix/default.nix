@@ -1,13 +1,16 @@
 { pkgs, ... }:
 
-let
-
-  sources = import ./sources.nix;
-
-in
 {
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "20.03"; # Did you read the comment?
 
   nix = {
+    package = pkgs.nixFlakes;
     # trusted users for pulling from caches
     trustedUsers = [ "root" "alex" "@wheel" "@sudo" ];
     # required for building with bazel
@@ -27,12 +30,13 @@ in
     ];
 
     nixPath = [
-      "nixpkgs=${sources.nixos}"
-      "nixos-config=/etc/nixos/configuration.nix"
-      "nixos-hardware=${sources.nixos-hardware}"
-      "nixpkgs-unstable=${sources.nixpkgs-unstable}"
-      "home-manager=${sources.home-manager}"
+      "nixpkgs=${pkgs.path}"
+      "nixpkgs-unstable=${pkgs.unstable.path}"
     ];
+
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
   };
 
   nixpkgs = {
