@@ -1,8 +1,5 @@
 { pkgs, lib, ... }:
 let
-  sources = import ../nix/sources.nix;
-  nixpkgs-unstable = import sources.nixpkgs-unstable-mac { };
-
   scripts = pkgs.callPackage ../dotfiles/scripts.nix { };
 
   latex = pkgs.texlive.combine {
@@ -13,7 +10,7 @@ let
       ;
   };
 
-  markdownlint-cli-pkgs = pkgs.callPackage ../packages/tools/markdownlint-cli {};
+  markdownlint-cli-pkgs = pkgs.callPackage ../packages/tools/markdownlint-cli { };
   markdownlint-cli = markdownlint-cli-pkgs."markdownlint-cli-0.27.1";
 
 in
@@ -25,20 +22,16 @@ in
 
   home = {
     stateVersion = "22.05";
-    username = "alexpeits";
-    homeDirectory = "/Users/alexpeits";
     file = {
       # ~/bin
       "bin/hm" = { text = scripts.hm; executable = true; };
-      ".config/nix/nix.conf".text = ''
-        extra-experimental-features = nix-command flakes
-      '';
+      ".config/nix/nix.conf".source = ../dotfiles/nix.conf;
     };
     sessionVariables = {
       NIXOS_CONFIG = "$HOME/code/nixos-config";
-      NIX_PATH = "nixpkgs=${sources.nixpkgs-unstable}";
+      NIX_PATH = "nixpkgs=${pkgs.path}";
     };
-    packages = with nixpkgs-unstable; [
+    packages = with pkgs; [
       bash
 
       entr

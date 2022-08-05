@@ -1,9 +1,6 @@
 { pkgs, ... }:
 
 let
-
-  is-mac = (pkgs.callPackage ../nix/lib.nix {}).is-mac;
-
   git-prompt-src = pkgs.fetchFromGitHub {
     owner = "woefe";
     repo = "git-prompt.zsh";
@@ -111,7 +108,7 @@ in
     stty -ixon -ixoff
   fi
 
-  ${if is-mac then mac-extra else ""}
+  ${if pkgs.is-mac then mac-extra else ""}
   ${vterm-extra}
   ${import ./nvm-lazy-load.nix}
 ''

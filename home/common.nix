@@ -1,21 +1,9 @@
 { pkgs, lib, ... }:
 let
-  is-mac = (pkgs.callPackage ../nix/lib.nix { }).is-mac;
-
   profile = pkgs.callPackage ../dotfiles/profile.nix { };
-  colors = import ../assets/colors.nix;
-
-  kbconfig = pkgs.callPackage ../packages/tools/kbconfig.nix { };
   fishrc = pkgs.callPackage ../dotfiles/fishrc.nix { };
-
   scripts = pkgs.callPackage ../dotfiles/scripts.nix { };
-  autostart = pkgs.callPackage ../dotfiles/autostart.nix { };
-
-  i3lock-wrap = pkgs.callPackage ../packages/tools/i3lock-wrap.nix { };
-  lock-cmd = "${i3lock-wrap}/bin/i3lock-wrap";
-
   vim = pkgs.callPackage ../dotfiles/vim.nix { };
-
 in
 {
   # home-manager manual
@@ -113,7 +101,7 @@ in
   };
 
   programs.bash =
-    let linuxOnlyOpts = ["globstar" "checkjobs"];
+    let linuxOnlyOpts = [ "globstar" "checkjobs" ];
     in
     {
       enable = true;
@@ -121,7 +109,7 @@ in
       shellOptions = [
         "histappend"
         "extglob"
-      ] ++ (if is-mac then [] else linuxOnlyOpts);
+      ] ++ (if pkgs.is-mac then [ ] else linuxOnlyOpts);
       shellAliases = profile.aliases;
       initExtra = pkgs.callPackage ../dotfiles/bashrc.nix { };
     };

@@ -4,16 +4,16 @@ let
 
   colors = import ../assets/colors.nix;
 
-  kbconfig = pkgs.callPackage ../packages/tools/kbconfig.nix {};
-  scripts = pkgs.callPackage ../dotfiles/scripts.nix {};
+  kbconfig = pkgs.callPackage ../packages/tools/kbconfig.nix { };
+  scripts = pkgs.callPackage ../dotfiles/scripts.nix { };
 
-  i3lock-wrap = pkgs.callPackage ../packages/tools/i3lock-wrap.nix {};
+  i3lock-wrap = pkgs.callPackage ../packages/tools/i3lock-wrap.nix { };
   lock-cmd = "${i3lock-wrap}/bin/i3lock-wrap";
 
 in
 
 {
-  imports = [./common.nix];
+  imports = [ ./common.nix ];
 
   home = {
     file = {
@@ -226,7 +226,7 @@ in
     extraConfig = {
       matching = "fuzzy";
       show-icons = true;
-      kb-mode-next=  "Alt+m";
+      kb-mode-next = "Alt+m";
       sort = true;
       sorting-method = "fzf";
     };
@@ -347,22 +347,22 @@ in
           };
         };
       in
-        {
-          "a5914944-7bfe-4e88-8699-695bf6ce9f2c" = dark // { default = true; };
-          "cd0124dc-173f-430a-a5f0-4eb1847845f4" = dark // {
-            visibleName = dark.visibleName + " large";
-            font = largeFont;
-          };
-          "cc0cc7dc-f63e-4fe6-909c-b7c4509a1df2" = lowContrast;
-          "f91c4e9c-676e-4225-a756-fba7149f447f" = lowContrast // {
-            visibleName = lowContrast.visibleName + " large";
-            font = largeFont;
-          };
-          "71fe2833-7417-43da-8459-008eb2f9e115" = light;
-          "636893b8-eb99-4361-a0ff-fe7b5e61e4c7" = light // {
-            visibleName = light.visibleName + " large";
-            font = largeFont;
-          };
+      {
+        "a5914944-7bfe-4e88-8699-695bf6ce9f2c" = dark // { default = true; };
+        "cd0124dc-173f-430a-a5f0-4eb1847845f4" = dark // {
+          visibleName = dark.visibleName + " large";
+          font = largeFont;
         };
+        "cc0cc7dc-f63e-4fe6-909c-b7c4509a1df2" = lowContrast;
+        "f91c4e9c-676e-4225-a756-fba7149f447f" = lowContrast // {
+          visibleName = lowContrast.visibleName + " large";
+          font = largeFont;
+        };
+        "71fe2833-7417-43da-8459-008eb2f9e115" = light;
+        "636893b8-eb99-4361-a0ff-fe7b5e61e4c7" = light // {
+          visibleName = light.visibleName + " large";
+          font = largeFont;
+        };
+      };
   };
 }

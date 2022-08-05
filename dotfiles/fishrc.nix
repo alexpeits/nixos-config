@@ -1,9 +1,6 @@
 { pkgs, ... }:
 
 let
-
-  is-mac = (pkgs.callPackage ../nix/lib.nix {}).is-mac;
-
   edit-cmd = ''
     function edit_cmd --description 'Edit cmdline in editor'
       set -l f (mktemp --tmpdir=.)
@@ -264,7 +261,7 @@ in
       set_color normal
     end
 
-    ${if is-mac then mac-extra else ""}
+    ${if pkgs.is-mac then mac-extra else ""}
     ${vterm-extra}
   '';
 }
