@@ -1,6 +1,6 @@
 # NixOS configuration
 
-Current version: *21.05*
+Current version: *22.05* + flakes
 
 ## Create a bootable USB drive
 
