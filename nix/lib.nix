@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> { } }:
 
 {
 
@@ -19,6 +19,6 @@
   is-mac =
     builtins.any
       (arch: builtins.currentSystem == arch)
-      [ "x86_64-darwin"];
+      [ "x86_64-darwin" "aarch64-darwin" ];
 
 }

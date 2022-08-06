@@ -1,9 +1,7 @@
 { pkgs, ... }:
 
 let
-
-  sources = import ../../nix/sources.nix;
-  nixpkgs-unstable = import sources.nixpkgs-unstable {};
+  nixpkgs-unstable = pkgs.unstable;
 
   hsLib = import ./lib.nix;
 
@@ -56,6 +54,6 @@ in
   # ghc.ghc865
   # ghc.ghc865Symlinks
   # ghc.ghc881
-  ghc.ghc8104
-  ghc.ghc8104Symlinks
+  # ghc.ghc8104
+  # ghc.ghc8104Symlinks
 ]

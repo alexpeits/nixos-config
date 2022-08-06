@@ -9,14 +9,17 @@ in
 {
   imports = [
     ./nix
-    ./nix/home-manager.nix
 
     ./system
+    ./system/user.nix
     ./system/desktop.nix
     ./system/fonts.nix
     ./system/input.nix
     ./system/power.nix
-    # ./system/virtualisation.nix
+    ./system/networking.nix
+    ./system/virtualisation.nix
+
+    ./hardware-configuration.nix
   ];
 
   environment.systemPackages = packages;

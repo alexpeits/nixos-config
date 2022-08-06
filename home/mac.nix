@@ -1,8 +1,5 @@
 { pkgs, lib, ... }:
 let
-  sources = import ../nix/sources.nix;
-  nixpkgs-unstable = import sources.nixpkgs-unstable-mac { };
-
   scripts = pkgs.callPackage ../dotfiles/scripts.nix { };
 
   latex = pkgs.texlive.combine {
@@ -13,7 +10,7 @@ let
       ;
   };
 
-  markdownlint-cli-pkgs = pkgs.callPackage ../packages/tools/markdownlint-cli {};
+  markdownlint-cli-pkgs = pkgs.callPackage ../packages/tools/markdownlint-cli { };
   markdownlint-cli = markdownlint-cli-pkgs."markdownlint-cli-0.27.1";
 
 in
@@ -24,15 +21,17 @@ in
   # manual.html.enable = lib.mkForce false;
 
   home = {
+    stateVersion = "22.05";
     file = {
       # ~/bin
       "bin/hm" = { text = scripts.hm; executable = true; };
+      ".config/nix/nix.conf".source = ../dotfiles/nix.conf;
     };
     sessionVariables = {
       NIXOS_CONFIG = "$HOME/code/nixos-config";
-      NIX_PATH = "nixpkgs=${sources.nixpkgs-unstable}";
+      NIX_PATH = "nixpkgs=${pkgs.path}";
     };
-    packages = with nixpkgs-unstable; [
+    packages = with pkgs; [
       bash
 
       entr
@@ -47,48 +46,48 @@ in
       ripgrep
 
       # latex
-      pandoc
+      # pandoc
       shellcheck
-      vale
-      proselint
-      yamllint
+      # vale
+      # proselint
+      # yamllint
       mdl
-      asciidoctor
+      # asciidoctor
       # markdownlint-cli
 
       tmux
       vim
 
       niv
-      lorri
-      cachix
+      # lorri
+      # cachix
       nix-prefetch-git
       nixpkgs-fmt
 
-      dhall
-      dhall-json
+      # dhall
+      # dhall-json
 
-      terraform
+      # terraform
 
-      git-crypt
+      # git-crypt
 
       ghc
-      cabal2nix
+      # cabal2nix
       cabal-install
-      stack
-      haskellPackages.fast-tags
+      # stack
+      # haskellPackages.fast-tags
       haskellPackages.hlint
       haskellPackages.ghcid
       haskellPackages.ormolu
 
-      coq
-      ocaml
-      opam
+      # coq
+      # ocaml
+      # opam
 
-      python39Packages.black
-      python39Packages.flake8
-      python39Packages.isort
-      python39Packages.mypy
+      python310Packages.black
+      python310Packages.flake8
+      python310Packages.isort
+      python310Packages.mypy
     ];
   };
 

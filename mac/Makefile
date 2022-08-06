@@ -1,8 +1,5 @@
-HERE=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
-
 build:
-	nix-shell --run "home-manager -f ${HERE}../home/mac.nix build"
+	nix build --experimental-features "nix-command flakes" ".#${HOME_MANAGER_NAME}"
 
-switch:
-	nix-shell --run 'home-manager -f ${HERE}../home/mac.nix switch'
-
+switch: build
+	result/activate

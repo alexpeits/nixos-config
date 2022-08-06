@@ -14,31 +14,22 @@
     etc.hosts.mode = "0644";
   };
 
+  boot = {
+    supportedFilesystems = [ "ntfs" ];
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+
+    initrd.luks.devices = {
+      root = {
+        device = "/dev/sda6";
+        preLVM = true;
+      };
+    };
+  };
+
   programs.fish.enable = true; # to add entry in /etc/shells
 
-  users = {
-    users.alex = {
-      extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" ];
-      isNormalUser = true;
-      shell = pkgs.fish;
-    };
-    defaultUserShell = pkgs.bash;
-  };
-
-  networking.hostName = "seabeast";
-
   time.timeZone = "Europe/London";
-
-  boot.supportedFilesystems = [ "ntfs" ];
-
-  networking.networkmanager.enable = true;
-  # networking.firewall.allowedTCPPorts = [ 80 ];
-  # networking.extraHosts = ''1.2.3.4 whatever'';
-
-  virtualisation.docker = {
-    enable = true;
-    enableOnBoot = true;
-  };
 
   sound.enable = true;
   hardware.pulseaudio = {
