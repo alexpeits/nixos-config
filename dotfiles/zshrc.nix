@@ -103,6 +103,17 @@ in
 
   source ${git-prompt-src}/git-prompt.zsh
 
+  PROMPT='%F{green}%~%f $(gitprompt)%(?.%(!.%F{white}❯%F{yellow}❯%F{red}.%F{blue}❯%F{cyan}❯%F{green})❯.%F{red}❯❯❯)%f '
+  PROMPT2='%F{green}┌─╼ %~%f $(gitprompt)
+%F{green}└╼ %(?.%(!.%F{white}❯%F{yellow}❯%F{red}.%F{blue}❯%F{cyan}❯%F{green})❯.%F{red}❯❯❯)%f '
+
+  switch_prompts() {
+    local tmp=$PROMPT
+    PROMPT=$PROMPT2
+    PROMPT2=$tmp
+  }
+  alias sp=switch_prompts
+
   # disable C-s and C-q if interactive
   if [[ -o interactive ]]; then
     stty -ixon -ixoff
