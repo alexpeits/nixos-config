@@ -10,14 +10,16 @@
     ga = "git add";
     gc = "git c";
     gr = "git reset";
-    lbat = "bat --theme=GitHub";
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../..";
     "....." = "cd ../../../..";
-    # testing
     tree = "exa --color=always --tree";
     ls = "exa --color=always --group-directories-first";
     cat = "bat --paging=never";
+    r = "cd $(git root)";
+    e = "cd ~/.emacs.d";
+    n = "cd $NIXOS_CONFIG";
+    po = "poetry";
   };
 }

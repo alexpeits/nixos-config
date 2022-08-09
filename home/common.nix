@@ -36,6 +36,7 @@ in
       EXA_COLORS = "uu=0;36:gu=0;36:da=0;37";
       RIPGREP_CONFIG_PATH = "$HOME/.config/ripgrep/ripgreprc";
     };
+    shellAliases = profile.aliases;
   };
 
   programs.git = {
@@ -77,7 +78,6 @@ in
   programs.fish = {
     enable = true;
     interactiveShellInit = fishrc.shellInit;
-    shellAliases = profile.aliases;
     plugins = [
       {
         name = "plugin-foreign-env";
@@ -110,7 +110,6 @@ in
         "histappend"
         "extglob"
       ] ++ (if pkgs.is-mac then [ ] else linuxOnlyOpts);
-      shellAliases = profile.aliases;
       initExtra = pkgs.callPackage ../dotfiles/bashrc.nix { };
     };
 
@@ -125,7 +124,6 @@ in
       share = true;
     };
     initExtra = pkgs.callPackage ../dotfiles/zshrc.nix { };
-    shellAliases = profile.aliases;
     plugins = [
       {
         name = "evalcache";
