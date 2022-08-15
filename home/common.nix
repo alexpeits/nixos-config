@@ -35,6 +35,7 @@ in
       LESS = "-r";
       EXA_COLORS = "uu=0;36:gu=0;36:da=0;37";
       RIPGREP_CONFIG_PATH = "$HOME/.config/ripgrep/ripgreprc";
+      WORKON_HOME = "$HOME/.virtualenvs";
     };
     shellAliases = profile.aliases;
   };
