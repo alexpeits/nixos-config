@@ -84,10 +84,10 @@ in
       # ocaml
       # opam
 
-      python310Packages.black
-      python310Packages.flake8
-      python310Packages.isort
-      python310Packages.mypy
+      # python310Packages.black
+      # python310Packages.flake8
+      # python310Packages.isort
+      # python310Packages.mypy
     ];
   };
 

@@ -68,10 +68,6 @@ in
 ''
   # eval "$(stack --bash-completion-script stack)"
 
-  if [ -f $HOME/.local-zshrc ]; then
-    source $HOME/.local-zshrc
-  fi
-
   hs() {
     eval "nix-shell -p 'haskellPackages.ghcWithPackages (pkgs: with pkgs; [ $@ ])'"
   }
@@ -122,4 +118,8 @@ in
   ${if pkgs.is-mac then mac-extra else ""}
   ${vterm-extra}
   ${import ./nvm-lazy-load.nix}
+
+  if [ -f $HOME/.local-zshrc ]; then
+    source $HOME/.local-zshrc
+  fi
 ''

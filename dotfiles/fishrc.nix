@@ -149,10 +149,6 @@ in
   shellInit = ''
     eval (${pkgs.direnv}/bin/direnv hook fish)
 
-    if test -e $HOME/.local-fishrc
-      source $HOME/.local-fishrc
-    end
-
     function nvminit
       unset -f npm
       export NVM_DIR="$HOME/.nvm"
@@ -263,5 +259,9 @@ in
 
     ${if pkgs.is-mac then mac-extra else ""}
     ${vterm-extra}
+
+    if test -e $HOME/.local-fishrc
+      source $HOME/.local-fishrc
+    end
   '';
 }
