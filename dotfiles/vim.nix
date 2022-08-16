@@ -52,6 +52,7 @@ let
     Plug 'jxnblk/vim-mdx-js'
     Plug 'Vimjas/vim-python-pep8-indent'
     Plug 'cespare/vim-toml'
+    Plug 'hashivim/vim-terraform'
 
     " themes & ui
     Plug 'jonathanfilip/vim-lucius'
