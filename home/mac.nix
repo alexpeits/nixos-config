@@ -67,7 +67,7 @@ in
       # dhall
       # dhall-json
 
-      # terraform
+      terraform
 
       # git-crypt
 
