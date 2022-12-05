@@ -74,7 +74,7 @@ in
       ghc
       # cabal2nix
       cabal-install
-      # stack
+      haskellPackages.stack
       # haskellPackages.fast-tags
       haskellPackages.hlint
       haskellPackages.ghcid
