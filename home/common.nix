@@ -60,10 +60,9 @@ in
       root = "rev-parse --show-toplevel";
     };
     extraConfig = {
-      core = {
-        editor = "vim";
-      };
+      core.editor = "vim";
       credential.helper = "store";
+      push.autoSetupRemote = true;
     };
     ignores = [
       ".projectile"
