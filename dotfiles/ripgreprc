@@ -1,4 +1,5 @@
 --glob=!yarn.lock
 --glob=!node_modules/*
 --glob=!vendor/*
+--glob=!*.map
 --type-add=web:*.{html,css,js,jsx,ts,tsx}*
