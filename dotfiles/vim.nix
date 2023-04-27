@@ -220,6 +220,9 @@ let
     " markdown
     autocmd FileType markdown set colorcolumn=100
 
+    " starlark
+    au Bufread,BufNewFile *.star set ft=python
+
     if exists("+mouse")
         set mouse=a
     endif
