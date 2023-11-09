@@ -44,6 +44,7 @@ in
       fd
       jq
       ripgrep
+      scc
 
       # latex
       # pandoc

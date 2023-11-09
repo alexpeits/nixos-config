@@ -15,6 +15,7 @@
     "...." = "cd ../../..";
     "....." = "cd ../../../..";
     tree = "exa --color=always --tree";
+    gtree = "exa --color=always --tree --git-ignore";
     ls = "exa --color=always --group-directories-first";
     cat = "bat --paging=never";
     r = "cd $(git root)";
