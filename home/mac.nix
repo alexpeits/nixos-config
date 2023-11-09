@@ -1,15 +1,6 @@
 { pkgs, lib, ... }:
 let
   scripts = pkgs.callPackage ../dotfiles/scripts.nix { };
-
-  latex = pkgs.texlive.combine {
-    inherit (pkgs.texlive)
-      scheme-medium
-      collection-fontsextra
-      collection-latexextra
-      ;
-  };
-
   markdownlint-cli-pkgs = pkgs.callPackage ../packages/tools/markdownlint-cli { };
   markdownlint-cli = markdownlint-cli-pkgs."markdownlint-cli-0.27.1";
 
@@ -46,8 +37,7 @@ in
       ripgrep
       scc
 
-      # latex
-      # pandoc
+      pandoc
       shellcheck
       # vale
       # proselint

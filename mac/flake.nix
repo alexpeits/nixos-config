@@ -22,6 +22,7 @@
           modules = [
             macSystem
             ../home/mac.nix
+            ../home/mac-extra.nix
             {
               home = {
                 username = "alexpeits";
