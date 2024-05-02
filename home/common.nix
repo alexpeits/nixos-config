@@ -63,6 +63,7 @@ in
       core.editor = "vim";
       credential.helper = "store";
       push.autoSetupRemote = true;
+      url."git@github.com-fc:FundingCircle/".insteadOf = "https://github.com/FundingCircle/";
     };
     ignores = [
       ".projectile"
