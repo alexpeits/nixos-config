@@ -4,7 +4,7 @@
   path = [ "$HOME/.local/bin" "$HOME/bin" ];
   aliases = {
     detach = "udisksctl power-off -b";
-    rmpyc = "find . | grep -E '(__pycache__|.pyc|.pyo$)' | xargs rm -rf";
+    rmpyc = "find . | grep -E '(__pycache__|.pyc|.pyo|.pytest_cache|.mypy_cache$)' | xargs rm -rf";
     ns = "nix-shell";
     gs = "git status";
     ga = "git add";
