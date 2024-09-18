@@ -1,0 +1,7 @@
+{ ... }:
+
+{
+  programs.git.ignores = [
+    ".envrc"
+  ];
+}

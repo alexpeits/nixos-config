@@ -38,10 +38,11 @@
           modules = [
             macSystem
             ../home/mac.nix
+            ../home/work-extra.nix
             {
               home = {
-                username = "alexandros.peitsinis";
-                homeDirectory = "/Users/alexandros.peitsinis";
+                username = "apeitsinis";
+                homeDirectory = "/Users/apeitsinis";
                 sessionVariables.HOME_MANAGER_NAME = "macbook-work";
               };
             }
