@@ -55,30 +55,7 @@ in
       nix-prefetch-git
       nixpkgs-fmt
 
-      # dhall
-      # dhall-json
-
-      terraform
-
       # git-crypt
-
-      ghc
-      # cabal2nix
-      cabal-install
-      haskellPackages.stack
-      # haskellPackages.fast-tags
-      haskellPackages.hlint
-      haskellPackages.ghcid
-      haskellPackages.ormolu
-
-      # coq
-      # ocaml
-      # opam
-
-      # python310Packages.black
-      # python310Packages.flake8
-      # python310Packages.isort
-      # python310Packages.mypy
     ];
   };
 

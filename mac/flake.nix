@@ -22,6 +22,7 @@
           modules = [
             macSystem
             ../home/mac.nix
+            ../home/home-extra.nix
             ../home/mac-extra.nix
             {
               home = {
@@ -34,7 +35,7 @@
         };
 
         macbook-work = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-darwin;
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           modules = [
             macSystem
             ../home/mac.nix
