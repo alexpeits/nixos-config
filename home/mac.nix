@@ -12,7 +12,7 @@ in
   # manual.html.enable = lib.mkForce false;
 
   home = {
-    stateVersion = "22.05";
+    stateVersion = "24.05";
     file = {
       # ~/bin
       "bin/hm" = { text = scripts.hm; executable = true; };
@@ -23,7 +23,7 @@ in
       NIX_PATH = "nixpkgs=${pkgs.path}";
     };
     packages = with pkgs; [
-      bash
+      # bash
 
       entr
       graphviz
@@ -31,11 +31,13 @@ in
       tree
       wget
 
-      exa
+      eza
       fd
       jq
       ripgrep
       scc
+
+      blueutil
 
       pandoc
       shellcheck

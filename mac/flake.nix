@@ -2,9 +2,9 @@
   description = "home-manager configuration using flakes";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/67f49b2a3854e8b5e3f9df4422225daa0985f451";
+    nixpkgs.url = "github:nixos/nixpkgs/a9a9e085f155b55e4a6dc49a16572b2c799ba66f";
     home-manager = {
-      url = "github:nix-community/home-manager/d1c677ac257affed8d026f418b81ed5de2c8d963";
+      url = "github:nix-community/home-manager/2f23fa308a7c067e52dfcc30a0758f47043ec176";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -23,7 +23,7 @@
             macSystem
             ../home/mac.nix
             ../home/home-extra.nix
-            ../home/mac-extra.nix
+            # ../home/mac-extra.nix
             {
               home = {
                 username = "alexpeits";

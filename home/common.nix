@@ -10,6 +10,8 @@ in
   manual.manpages.enable = true;
   manual.html.enable = true;
 
+  nixpkgs.config = { allowUnfree = true; };
+
   home = {
     file = {
       # vim
@@ -116,7 +118,7 @@ in
 
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = false;
+    autosuggestion.enable = false;
     enableCompletion = true;
     history = {
       size = 50000;
