@@ -55,7 +55,6 @@ let
     Plug 'hashivim/vim-terraform'
 
     " themes & ui
-    Plug 'jonathanfilip/vim-lucius'
     Plug 'https://gitlab.com/protesilaos/tempus-themes-vim'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -105,6 +104,9 @@ let
     autocmd BufRead,BufNewFile *.html,*.css,*.js,*.jsx,*.ts,*.tsx,*.json,*.nix,*.md,*.mdx set tabstop=2
     autocmd BufRead,BufNewFile *.html,*.css,*.js,*.jsx,*.ts,*.tsx,*.json,*.nix,*.md,*.mdx set softtabstop=2
     autocmd BufRead,BufNewFile *.html,*.css,*.js,*.jsx,*.ts,*.tsx,*.json,*.nix,*.md,*.mdx set shiftwidth=2
+
+    autocmd BufRead,BufNewFile *.pants set syntax=python
+    autocmd BufRead,BufNewFile .local-zshrc set syntax=zsh
 
     " jump to last position when opening file
     if has("autocmd")
