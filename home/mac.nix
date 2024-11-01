@@ -17,6 +17,7 @@ in
       # ~/bin
       "bin/hm" = { text = scripts.hm; executable = true; };
       ".config/nix/nix.conf".source = ../dotfiles/nix.conf;
+      ".skhdrc".source = ../dotfiles/skhdrc;
     };
     sessionVariables = {
       NIXOS_CONFIG = "$HOME/code/nixos-config";

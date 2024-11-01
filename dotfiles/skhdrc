@@ -1,0 +1,14 @@
+# App shortcuts
+
+# Common apps
+alt - e : open -a 'Emacs'
+alt - t : open -a 'iTerm'
+alt - o : open -a 'Obsidian'
+alt - c : open -a 'Google Chrome'
+alt - s : open -a 'Spotify'
+
+# Work
+alt + shift - s : open -a 'Slack'
+alt + shift - o : open -a 'Microsoft Outlook'
+alt + shift - t : open -a 'Microsoft Teams'
+
