@@ -6,6 +6,7 @@ alt - t : open -a 'iTerm'
 alt - o : open -a 'Obsidian'
 alt - c : open -a 'Google Chrome'
 alt - s : open -a 'Spotify'
+alt - z : open -a 'Zotero'
 
 # Work
 alt + shift - s : open -a 'Slack'
