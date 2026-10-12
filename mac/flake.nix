@@ -42,8 +42,8 @@
             ../home/work-extra.nix
             {
               home = {
-                username = "apeitsinis";
-                homeDirectory = "/Users/apeitsinis";
+                username = "alexpeits";
+                homeDirectory = "/Users/alexpeits";
                 sessionVariables.HOME_MANAGER_NAME = "macbook-work";
               };
             }
