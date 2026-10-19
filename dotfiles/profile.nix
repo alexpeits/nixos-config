@@ -9,7 +9,9 @@
     gs = "git status";
     ga = "git add";
     gc = "git c";
-    gr = "git reset";
+    gr = "git fetch origin --prune && git rebase -i --rebase-merges";
+    gcl = "git checkout -- .";
+    gm = "git checkout main && git pull --prune";
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../..";

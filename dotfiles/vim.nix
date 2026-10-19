@@ -41,6 +41,7 @@ let
     Plug 'scrooloose/nerdcommenter'
     Plug 'tpope/vim-surround'
     Plug 'chaoren/vim-wordmotion'
+    Plug 'godlygeek/tabular' " vim-markdown needs it
 
     " filetypes
     Plug 'LnL7/vim-nix'
@@ -48,7 +49,7 @@ let
     Plug 'neovimhaskell/haskell-vim'
     Plug 'peitalin/vim-jsx-typescript'
     Plug 'chr4/nginx.vim'
-    Plug 'tpope/vim-markdown'
+    Plug 'preservim/vim-markdown'
     Plug 'jxnblk/vim-mdx-js'
     Plug 'Vimjas/vim-python-pep8-indent'
     Plug 'cespare/vim-toml'
@@ -224,6 +225,9 @@ let
 
     " starlark
     au Bufread,BufNewFile *.star set ft=python
+
+    " tilt
+    au Bufread,BufNewFile Tiltfile set ft=python
 
     if exists("+mouse")
         set mouse=a
