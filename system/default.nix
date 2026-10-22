@@ -31,10 +31,10 @@
 
   time.timeZone = "Europe/London";
 
-  sound.enable = true;
-  hardware.pulseaudio = {
+  services.pipewire = {
     enable = true;
-    package = pkgs.pulseaudioFull;
+    alsa.enable = true;
+    pulse.enable = true;
   };
 
   hardware.bluetooth.enable = true;
@@ -57,8 +57,6 @@
   # to prevent nix-shell complaining about no space left
   # default value is 10% of total RAM
   # writes to: /etc/systemd/logind.conf
-  services.logind.extraConfig = ''
-    RuntimeDirectorySize=4G
-  '';
+  services.logind.settings.Login.RuntimeDirectorySize = "4G";
 
 }

@@ -7,7 +7,7 @@ let
 
   ensure-binary-exists = bin: ''
     if ! command -v ${bin} > /dev/null; then
-      ${pkgs.xorg.xmessage}/bin/xmessage "'${bin}' not found"
+      ${pkgs.xmessage}/bin/xmessage "'${bin}' not found"
       exit 1
     fi
   '';

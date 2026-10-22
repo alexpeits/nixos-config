@@ -14,10 +14,8 @@ in
     enable = true;
 
     displayManager = {
-      gdm = {
-        enable = true;
-        wayland = false;
-      };
+      # GDM no longer supports X11 sessions (GNOME 50), and xmonad needs X11
+      lightdm.enable = true;
       sessionCommands = ''
         ${pkgs.dropbox}/bin/dropbox &
         ${pkgs.networkmanagerapplet}/bin/nm-applet &
@@ -27,9 +25,9 @@ in
         ${pkgs.feh}/bin/feh --bg-scale ${../assets/wallpaper_blue_red.jpg}
         ${pkgs.redshift}/bin/redshift -P -O 4800
 
-        ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
-        ${pkgs.xorg.xset}/bin/xset s off
-        ${pkgs.xorg.xset}/bin/xset dpms 0 0 600
+        ${pkgs.xsetroot}/bin/xsetroot -cursor_name left_ptr
+        ${pkgs.xset}/bin/xset s off
+        ${pkgs.xset}/bin/xset dpms 0 0 600
       '';
     };
     windowManager.xmonad.enable = true;

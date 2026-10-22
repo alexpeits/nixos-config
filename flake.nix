@@ -2,11 +2,11 @@
   description = "nixos configuration using flakes";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
+    nixpkgs.url = "github:nixos/nixpkgs/da6dc0e7b26060f2f71ce3ef7088fb56ee44fa36";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/2f0c3be57c348f4cfd8820f2d189e29a685d9c41";
     nixos-hardware.url = "github:nixos/nixos-hardware/3cffbd596197a99d10d8113860c9ddf5566c2ef3";
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.05";
+      url = "github:nix-community/home-manager/24f8f8e786f87d6a818e1746cb2389bf922afdab";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -18,7 +18,6 @@
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
-        is-mac = false;
       };
     in
     {

@@ -10,8 +10,6 @@ in
   manual.manpages.enable = true;
   manual.html.enable = true;
 
-  nixpkgs.config = { allowUnfree = true; };
-
   home = {
     file = {
       # vim
@@ -112,7 +110,7 @@ in
       shellOptions = [
         "histappend"
         "extglob"
-      ] ++ (if pkgs.is-mac then [ ] else linuxOnlyOpts);
+      ] ++ (if pkgs.stdenv.hostPlatform.isDarwin then [ ] else linuxOnlyOpts);
       initExtra = pkgs.callPackage ../dotfiles/bashrc.nix { };
     };
 

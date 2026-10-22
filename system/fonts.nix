@@ -28,7 +28,7 @@ let
 in
 
 {
-  fonts.fonts = [
+  fonts.packages = [
     iosevka-term
     pkgs.hack-font
     pkgs.source-code-pro

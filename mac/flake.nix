@@ -11,16 +11,17 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      linuxSystem = { nixpkgs.overlays = [ (_: _: { is-mac = false; }) ]; };
-      macSystem = { nixpkgs.overlays = [ (_: _: { is-mac = true; }) ]; };
+      pkgs = import nixpkgs {
+        system = "aarch64-darwin";
+        config.allowUnfree = true;
+      };
     in
     {
       homeConfigurations = {
 
         macbook-home = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          inherit pkgs;
           modules = [
-            macSystem
             ../home/mac.nix
             ../home/home-extra.nix
             # ../home/mac-extra.nix
@@ -35,9 +36,8 @@
         };
 
         macbook-work = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          inherit pkgs;
           modules = [
-            macSystem
             ../home/mac.nix
             ../home/work-extra.nix
             {

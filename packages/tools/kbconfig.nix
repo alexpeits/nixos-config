@@ -2,8 +2,8 @@
 
 let
 
-  setxkbmap = "${pkgs.xorg.setxkbmap}/bin/setxkbmap";
-  xset = "${pkgs.xorg.xset}/bin/xset";
+  setxkbmap = "${pkgs.setxkbmap}/bin/setxkbmap";
+  xset = "${pkgs.xset}/bin/xset";
   xcape = "${pkgs.xcape}/bin/xcape";
 
 in

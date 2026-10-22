@@ -115,7 +115,7 @@ in
       stty -ixon -ixoff
     fi
 
-    ${if pkgs.is-mac then mac-extra else ""}
+    ${if pkgs.stdenv.hostPlatform.isDarwin then mac-extra else ""}
     ${vterm-extra}
     ${import ./nvm-lazy-load.nix}
 

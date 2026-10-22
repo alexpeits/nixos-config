@@ -33,7 +33,7 @@ let
 
   haskellPackages = pkgs.callPackage ./haskell { };
 
-  yarn = pkgs.yarn.override { nodejs = pkgs.nodejs-14_x; };
+  yarn = pkgs.yarn.override { nodejs = pkgs.nodejs; };
 
   # dunst = pkgs.dunst.override { dunstify = true; };
   dunst = pkgs.dunst;
@@ -46,13 +46,13 @@ let
     [
       emacs
       pkgs.firefox
-      pkgs.gnome3.cheese
+      pkgs.cheese
       pkgs.deluge
       nixpkgs-unstable.dropbox
       pkgs.evince
-      pkgs.gnome3.eog
-      pkgs.gnome3.gedit
-      pkgs.gnome3.nautilus
+      pkgs.eog
+      pkgs.gedit
+      pkgs.nautilus
       pkgs.google-chrome
       pkgs.pavucontrol
       pkgs.postman
@@ -60,7 +60,7 @@ let
       pkgs.vlc
       # nixpkgs-unstable.zoom-us
       nixpkgs-unstable.write_stylus
-      pkgs.wacomtablet
+      pkgs.kdePackages.wacomtablet
       pkgs.kid3
       pkgs.picard
       nixpkgs-unstable.musescore
@@ -90,7 +90,7 @@ let
 
       pkgs.bat
       pkgs.direnv
-      pkgs.exa
+      pkgs.eza
       pkgs.fd
       pkgs.fzf
       pkgs.jq
@@ -109,7 +109,7 @@ let
       pkgs.brightnessctl
       pkgs.feh
       pkgs.gcolor3
-      pkgs.gnome3.zenity
+      pkgs.zenity
       pkgs.gsimplecal
       pkgs.libnotify
       pkgs.playerctl
@@ -119,7 +119,7 @@ let
       pkgs.trayer
       pkgs.wmctrl
       pkgs.xdotool
-      pkgs.xorg.xmessage
+      pkgs.xmessage
       trayer-wrap
       tpacpi-bat
       pkgs.paper-icon-theme
@@ -144,7 +144,7 @@ let
       # pkgs.python38Packages.isort
       # pkgs.python38Packages.mypy
 
-      pkgs.nodejs-14_x
+      pkgs.nodejs
       yarn
 
       pkgs.ocaml
