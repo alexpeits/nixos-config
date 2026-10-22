@@ -12,8 +12,8 @@ let
     sha256 = "0ll8zcby70zz1x0i7cskfxkl48mfaw303a3rsz7j62i4h3kq7xzj";
   };
 
-  brittany = pkgs.callPackage ./brittany.nix {};
-  fast-tags = pkgs.callPackage ./fast-tags.nix {};
+  brittany = pkgs.callPackage ./brittany.nix { };
+  fast-tags = pkgs.callPackage ./fast-tags.nix { };
   hlint = pkgs.callPackage ./hlint.nix {
     pkgs = nixpkgs-unstable;
     overrides = {
@@ -30,7 +30,7 @@ let
     pkgs = nixpkgs-unstable;
   };
 
-  ghc = pkgs.callPackage ./ghc.nix {};
+  ghc = pkgs.callPackage ./ghc.nix { };
 
 in
 

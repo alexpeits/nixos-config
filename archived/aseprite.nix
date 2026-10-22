@@ -18,7 +18,7 @@ pkgs.stdenvNoCC.mkDerivation {
     pkgs.xorg.libXcursor
     pkgs.expat
   ];
-  phases = ["installPhase"];
+  phases = [ "installPhase" ];
   installPhase = ''
     mkdir -p $out/tmp
     dpkg -x $src/aseprite.deb $out/tmp

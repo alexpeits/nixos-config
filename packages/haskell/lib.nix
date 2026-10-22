@@ -1,20 +1,20 @@
 let
 
   fetchFromHackage =
-    { pkgs ? import <nixpkgs> {}
+    { pkgs ? import <nixpkgs> { }
     , name
     , version
     , sha256
-    , overrides ? {}
+    , overrides ? { }
     }:
-      let
-        pkg = "${name}-${version}";
-        src = fetchTarball {
-          url = "https://hackage.haskell.org/package/${pkg}/${pkg}.tar.gz";
-          sha256 = sha256;
-        };
-      in
-        pkgs.haskellPackages.callCabal2nix name src overrides;
+    let
+      pkg = "${name}-${version}";
+      src = fetchTarball {
+        url = "https://hackage.haskell.org/package/${pkg}/${pkg}.tar.gz";
+        sha256 = sha256;
+      };
+    in
+    pkgs.haskellPackages.callCabal2nix name src overrides;
 
 in
 { fetchFromHackage = fetchFromHackage; }

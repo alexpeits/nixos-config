@@ -22,16 +22,16 @@ let
     ghc = nixpkgs-unstable.ghc.withPackages (ps: [ ps.ieee754 ]);
   };
 
-  i3lock-wrap = pkgs.callPackage ./tools/i3lock-wrap.nix {};
-  kbconfig = pkgs.callPackage ./tools/kbconfig.nix {};
-  nixfmt = pkgs.callPackage ./tools/nixfmt.nix {};
-  trayer-wrap = pkgs.callPackage ./tools/trayer-wrap.nix {};
-  xmonad-build = pkgs.callPackage ./tools/xmonad-build.nix {};
-  tpacpi-bat = pkgs.callPackage ./tools/tpacpi-bat.nix {};
+  i3lock-wrap = pkgs.callPackage ./tools/i3lock-wrap.nix { };
+  kbconfig = pkgs.callPackage ./tools/kbconfig.nix { };
+  nixfmt = pkgs.callPackage ./tools/nixfmt.nix { };
+  trayer-wrap = pkgs.callPackage ./tools/trayer-wrap.nix { };
+  xmonad-build = pkgs.callPackage ./tools/xmonad-build.nix { };
+  tpacpi-bat = pkgs.callPackage ./tools/tpacpi-bat.nix { };
 
-  obsidian = pkgs.callPackage ./apps/obsidian.nix {};
+  obsidian = pkgs.callPackage ./apps/obsidian.nix { };
 
-  haskellPackages = pkgs.callPackage ./haskell {};
+  haskellPackages = pkgs.callPackage ./haskell { };
 
   yarn = pkgs.yarn.override { nodejs = pkgs.nodejs-14_x; };
 
@@ -39,7 +39,7 @@ let
   dunst = pkgs.dunst;
 
   buildNodePackage = (pkgs.callPackage ./lib.nix { }).buildNodePackage;
-  markdownlint-cli-pkgs = pkgs.callPackage ./tools/markdownlint-cli {};
+  markdownlint-cli-pkgs = pkgs.callPackage ./tools/markdownlint-cli { };
   markdownlint-cli = markdownlint-cli-pkgs."markdownlint-cli-0.27.1";
 
   packages =

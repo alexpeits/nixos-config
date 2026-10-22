@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {}, overrides ? {} }:
+{ pkgs ? import <nixpkgs> { }, overrides ? { } }:
 
 let
 

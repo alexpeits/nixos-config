@@ -1,8 +1,8 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> { } }:
 
 let
 
-  aseprite = import ./default.nix {pkgs = pkgs;};
+  aseprite = import ./default.nix { pkgs = pkgs; };
 
 in
 

@@ -9,15 +9,15 @@ let
       name_ = if isNull variant then "iosevka${suffix}" else "iosevka${suffix}-${variant}";
       urlPrefix = "https://github.com/be5invis/Iosevka/releases/download";
     in
-      pkgs.fetchzip {
-        name = "${name_}-${version}";
-        url = "${urlPrefix}/v${version}/${prefix}${name_}-${version}.zip";
-        sha256 = sha256;
-        postFetch = ''
-          mkdir -p $out/share/fonts
-          unzip -j $downloadedFile 'ttf/*.ttf' -d $out/share/fonts/$name
-        '';
-      };
+    pkgs.fetchzip {
+      name = "${name_}-${version}";
+      url = "${urlPrefix}/v${version}/${prefix}${name_}-${version}.zip";
+      sha256 = sha256;
+      postFetch = ''
+        mkdir -p $out/share/fonts
+        unzip -j $downloadedFile 'ttf/*.ttf' -d $out/share/fonts/$name
+      '';
+    };
 
   iosevka-term = mkIosevka {
     mode = "term";

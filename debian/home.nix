@@ -9,11 +9,11 @@ let
   nixpkgs-unstable = sources.nixpkgs-unstable;
   home-manager = sources.home-manager;
 
-  packages = pkgs.callPackage ../packages {};
-  debian-manage = pkgs.callPackage ./debian-manage.nix {};
+  packages = pkgs.callPackage ../packages { };
+  debian-manage = pkgs.callPackage ./debian-manage.nix { };
 
-  kbconfig = pkgs.callPackage ../packages/tools/kbconfig.nix {};
-  trayer-wrap = pkgs.callPackage ../packages/tools/trayer-wrap.nix {};
+  kbconfig = pkgs.callPackage ../packages/tools/kbconfig.nix { };
+  trayer-wrap = pkgs.callPackage ../packages/tools/trayer-wrap.nix { };
 
   nixPath = builtins.concatStringsSep ":" [
     "nixpkgs=${nixpkgs}"
@@ -38,8 +38,8 @@ in
     sessionVariables = {
       NIX_PATH = nixPath;
       PATH = "$HOME/bin:$PATH";
-      XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS";
-      MANPATH="$HOME/.nix-profile/etc/share/man:$MANPATH";
+      XDG_DATA_DIRS = "$HOME/.nix-profile/share:$XDG_DATA_DIRS";
+      MANPATH = "$HOME/.nix-profile/etc/share/man:$MANPATH";
       LOCALE_ARCHIVE = "${pkgs.glibcLocales}/lib/locale/locale-archive";
     };
     file = {

@@ -2,7 +2,7 @@
 
 let
 
-  trayer-wrap = pkgs.callPackage ../packages/tools/trayer-wrap.nix {};
+  trayer-wrap = pkgs.callPackage ../packages/tools/trayer-wrap.nix { };
 
 in
 

@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> { } }:
 
 let
 
@@ -10,4 +10,4 @@ let
   };
 
 in
-pkgs.haskellPackages.callCabal2nix "cabal-edit" src {}
+pkgs.haskellPackages.callCabal2nix "cabal-edit" src { }

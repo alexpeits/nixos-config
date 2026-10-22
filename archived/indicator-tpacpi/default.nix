@@ -2,7 +2,7 @@
 
 let
 
-  tpacpi-bat = pkgs.callPackage ../tpacpi-bat.nix {};
+  tpacpi-bat = pkgs.callPackage ../tpacpi-bat.nix { };
   tpacpi = "${tpacpi-bat}/bin/tpacpi-bat";
 
   icon = "${./icon_white_small.png}";

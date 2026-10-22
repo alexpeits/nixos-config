@@ -12,9 +12,10 @@ let
     fi
   '';
 
-  ensure-env-var = var: let v = "$" + "${var}"; in ''
-    [ -z "${v}" ] && echo "${var} is not set" && exit 1
-  '';
+  ensure-env-var = var:
+    let v = "$" + "${var}"; in ''
+      [ -z "${v}" ] && echo "${var} is not set" && exit 1
+    '';
 
   rofi-runner = pkgs.writeScriptBin "rofi-runner" ''
     ${shebang}
@@ -36,10 +37,10 @@ let
         ${pkgs.lib.concatStringsSep "\n" argsList}
       '';
     in
-      ''
-        ${shebang}
-        ${rofi-runner}/bin/rofi-runner ${mapFile}
-      '';
+    ''
+      ${shebang}
+      ${rofi-runner}/bin/rofi-runner ${mapFile}
+    '';
 
 in
 
@@ -48,44 +49,44 @@ in
     let
       wsp = "emacs-workspace-terminal";
     in
-      ''
-        ${shebang}
+    ''
+      ${shebang}
 
-        if [ $# -eq 0 ]; then
-            args="."
-        else
-            args="$@"
-        fi
+      if [ $# -eq 0 ]; then
+          args="."
+      else
+          args="$@"
+      fi
 
-        run-emacsclient() {
-          ${emacs}/bin/emacsclient -c -t -s ${wsp} $args
-        }
+      run-emacsclient() {
+        ${emacs}/bin/emacsclient -c -t -s ${wsp} $args
+      }
 
-        start-workspace-server() {
-          ${emacs}/bin/emacs --daemon=${wsp}
-        }
+      start-workspace-server() {
+        ${emacs}/bin/emacs --daemon=${wsp}
+      }
 
-         run-emacsclient || (start-workspace-server && run-emacsclient)
-      '';
+       run-emacsclient || (start-workspace-server && run-emacsclient)
+    '';
 
   magit =
     let
       wsp = "emacs-workspace-magit";
     in
-      ''
-        ${shebang}
+    ''
+      ${shebang}
 
-        run-magit() {
-          ${emacs}/bin/emacsclient -c -t -s ${wsp} \
-              --eval '(progn (magit-status) (delete-other-windows))'
-        }
+      run-magit() {
+        ${emacs}/bin/emacsclient -c -t -s ${wsp} \
+            --eval '(progn (magit-status) (delete-other-windows))'
+      }
 
-        start-workspace-server() {
-          ${emacs}/bin/emacs --daemon=${wsp}
-        }
+      start-workspace-server() {
+        ${emacs}/bin/emacs --daemon=${wsp}
+      }
 
-        run-magit || (start-workspace-server && run-magit)
-      '';
+      run-magit || (start-workspace-server && run-magit)
+    '';
 
   session-quit = mkRunner "session-quit" {
     Logout = "${pkgs.procps}/bin/pkill xmonad";
@@ -97,65 +98,65 @@ in
     let
       xfconf-query = "${pkgs.xfce.xfconf}/bin/xfconf-query";
     in
-      ''
-        ${shebang}
-        usage() {
-            cat <<EOF
-        Usage: xfce-manage [mode]
+    ''
+      ${shebang}
+      usage() {
+          cat <<EOF
+      Usage: xfce-manage [mode]
 
-        available modes:
+      available modes:
 
-          --dpi      toggle dpi
-          --panel    toggle panel size
+        --dpi      toggle dpi
+        --panel    toggle panel size
 
-        EOF
-        }
+      EOF
+      }
 
-        toggle_dpi() {
-            declare -r query="${xfconf-query} -c xsettings -p /Xft/DPI"
-            declare -r small="83"
-            declare -r medium="-1"
-            declare -r large="110"
-            declare -r cur="$(eval $query)"
+      toggle_dpi() {
+          declare -r query="${xfconf-query} -c xsettings -p /Xft/DPI"
+          declare -r small="83"
+          declare -r medium="-1"
+          declare -r large="110"
+          declare -r cur="$(eval $query)"
 
-            if [ "$cur" == "$medium" ]; then
-                eval "$query -s $large"
-            elif [ "$cur" == "$large" ]; then
-                eval "$query -s $small"
-            else
-                eval "$query -s $medium"
-            fi
-        }
+          if [ "$cur" == "$medium" ]; then
+              eval "$query -s $large"
+          elif [ "$cur" == "$large" ]; then
+              eval "$query -s $small"
+          else
+              eval "$query -s $medium"
+          fi
+      }
 
-        toggle_panel_size() {
-            declare -r query="${xfconf-query} -c xfce4-panel -p /panels/panel-1/size"
-            declare -r small="24"
-            declare -r large="36"
-            declare -r cur="$(eval $query)"
+      toggle_panel_size() {
+          declare -r query="${xfconf-query} -c xfce4-panel -p /panels/panel-1/size"
+          declare -r small="24"
+          declare -r large="36"
+          declare -r cur="$(eval $query)"
 
-            if [ "$cur" == "$small" ]; then
-                eval "$query -s $large"
-            else
-                eval "$query -s $small"
-            fi
-        }
+          if [ "$cur" == "$small" ]; then
+              eval "$query -s $large"
+          else
+              eval "$query -s $small"
+          fi
+      }
 
-        case "$1" in
-            --dpi)
-                toggle_dpi
-                ;;
-            --panel)
-                toggle_panel_size
-                ;;
-            -h | --help)
-                usage
-                ;;
-            *)
-                usage
-                exit 1
-                ;;
-        esac
-      '';
+      case "$1" in
+          --dpi)
+              toggle_dpi
+              ;;
+          --panel)
+              toggle_panel_size
+              ;;
+          -h | --help)
+              usage
+              ;;
+          *)
+              usage
+              exit 1
+              ;;
+      esac
+    '';
 
   gen-gitignore = ''
     ${shebang}

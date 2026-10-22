@@ -66,60 +66,60 @@ let
 in
 
 ''
-  # eval "$(stack --bash-completion-script stack)"
+    # eval "$(stack --bash-completion-script stack)"
 
-  hs() {
-    eval "nix-shell -p 'haskellPackages.ghcWithPackages (pkgs: with pkgs; [ $@ ])'"
-  }
+    hs() {
+      eval "nix-shell -p 'haskellPackages.ghcWithPackages (pkgs: with pkgs; [ $@ ])'"
+    }
 
-  py() {
-    eval "nix-shell -p 'python3.withPackages (pkgs: with pkgs; [ ipython $@ ])'"
-  }
+    py() {
+      eval "nix-shell -p 'python3.withPackages (pkgs: with pkgs; [ ipython $@ ])'"
+    }
 
-  ##########
-  # prompt #
-  ##########
+    ##########
+    # prompt #
+    ##########
 
-  ZSH_THEME_GIT_PROMPT_PREFIX="("
-  ZSH_THEME_GIT_PROMPT_SUFFIX=") "
-  ZSH_THEME_GIT_PROMPT_SEPARATOR="|"
-  ZSH_THEME_GIT_PROMPT_DETACHED="%{$fg[cyan]%}:"
-  ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
-  ZSH_THEME_GIT_PROMPT_UPSTREAM_SYMBOL="%{$fg_bold[yellow]%}⟳ "
-  ZSH_THEME_GIT_PROMPT_UPSTREAM_PREFIX="%{$fg[red]%}(%{$fg[yellow]%}"
-  ZSH_THEME_GIT_PROMPT_UPSTREAM_SUFFIX="%{$fg[red]%})"
-  ZSH_THEME_GIT_PROMPT_BEHIND="↓"
-  ZSH_THEME_GIT_PROMPT_AHEAD="↑"
-  ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[red]%}✖"
-  ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}•"
-  ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[yellow]%}•"
-  ZSH_THEME_GIT_PROMPT_UNTRACKED="•"
-  ZSH_THEME_GIT_PROMPT_STASHED="%{$fg[blue]%}⚑"
-  ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔"
+    ZSH_THEME_GIT_PROMPT_PREFIX="("
+    ZSH_THEME_GIT_PROMPT_SUFFIX=") "
+    ZSH_THEME_GIT_PROMPT_SEPARATOR="|"
+    ZSH_THEME_GIT_PROMPT_DETACHED="%{$fg[cyan]%}:"
+    ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
+    ZSH_THEME_GIT_PROMPT_UPSTREAM_SYMBOL="%{$fg_bold[yellow]%}⟳ "
+    ZSH_THEME_GIT_PROMPT_UPSTREAM_PREFIX="%{$fg[red]%}(%{$fg[yellow]%}"
+    ZSH_THEME_GIT_PROMPT_UPSTREAM_SUFFIX="%{$fg[red]%})"
+    ZSH_THEME_GIT_PROMPT_BEHIND="↓"
+    ZSH_THEME_GIT_PROMPT_AHEAD="↑"
+    ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[red]%}✖"
+    ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}•"
+    ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[yellow]%}•"
+    ZSH_THEME_GIT_PROMPT_UNTRACKED="•"
+    ZSH_THEME_GIT_PROMPT_STASHED="%{$fg[blue]%}⚑"
+    ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔"
 
-  source ${git-prompt-src}/git-prompt.zsh
+    source ${git-prompt-src}/git-prompt.zsh
 
-  PROMPT='%F{green}%~%f $(gitprompt)%(?.%(!.%F{yellow}.%F{blue})❯.%F{red}❯)%f '
-  PROMPT2='%F{green}┌─╼ %~%f $(gitprompt)
-%F{green}└╼ %(?.%(!.%F{yellow}.%F{blue})❯.%F{red}❯)%f '
+    PROMPT='%F{green}%~%f $(gitprompt)%(?.%(!.%F{yellow}.%F{blue})❯.%F{red}❯)%f '
+    PROMPT2='%F{green}┌─╼ %~%f $(gitprompt)
+  %F{green}└╼ %(?.%(!.%F{yellow}.%F{blue})❯.%F{red}❯)%f '
 
-  switch_prompts() {
-    local tmp=$PROMPT
-    PROMPT=$PROMPT2
-    PROMPT2=$tmp
-  }
-  alias sp=switch_prompts
+    switch_prompts() {
+      local tmp=$PROMPT
+      PROMPT=$PROMPT2
+      PROMPT2=$tmp
+    }
+    alias sp=switch_prompts
 
-  # disable C-s and C-q if interactive
-  if [[ -o interactive ]]; then
-    stty -ixon -ixoff
-  fi
+    # disable C-s and C-q if interactive
+    if [[ -o interactive ]]; then
+      stty -ixon -ixoff
+    fi
 
-  ${if pkgs.is-mac then mac-extra else ""}
-  ${vterm-extra}
-  ${import ./nvm-lazy-load.nix}
+    ${if pkgs.is-mac then mac-extra else ""}
+    ${vterm-extra}
+    ${import ./nvm-lazy-load.nix}
 
-  if [ -f $HOME/.local-zshrc ]; then
-    source $HOME/.local-zshrc
-  fi
+    if [ -f $HOME/.local-zshrc ]; then
+      source $HOME/.local-zshrc
+    fi
 ''
