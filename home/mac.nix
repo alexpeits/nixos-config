@@ -63,7 +63,7 @@ in
   };
 
   programs.zsh = {
-    initExtraBeforeCompInit = ''
+    initContent = lib.mkOrder 550 ''
       export ZSH_DISABLE_COMPFIX="true"
     '';
   };
