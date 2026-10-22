@@ -10,6 +10,14 @@ let
   i3lock-wrap = pkgs.callPackage ../packages/tools/i3lock-wrap.nix { };
   lock-cmd = "${i3lock-wrap}/bin/i3lock-wrap";
 
+  notes-git-push = pkgs.writeShellApplication {
+    name = "notes-git-push";
+    runtimeInputs = [ pkgs.bash pkgs.git pkgs.coreutils ];
+    text = ''
+      bash "$HOME/Dropbox/emacs/org/.autocommit"
+    '';
+  };
+
 in
 
 {
@@ -116,7 +124,7 @@ in
       };
       Service = {
         Type = "oneshot";
-        ExecStart = "${pkgs.nix}/bin/nix-shell -p bash git coreutils --command 'bash %h/Dropbox/emacs/org/.autocommit'";
+        ExecStart = "${notes-git-push}/bin/notes-git-push";
       };
     };
   };

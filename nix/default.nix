@@ -10,6 +10,9 @@
   system.stateVersion = "20.03"; # Did you read the comment?
 
   nix = {
+    # everything comes from the flake; NIX_PATH/registry nixpkgs point at its pinned input
+    channel.enable = false;
+
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       # trusted users for pulling from caches
@@ -31,11 +34,6 @@
 
     # required for building with bazel
     nrBuildUsers = 128;
-
-    nixPath = [
-      "nixpkgs=${pkgs.path}"
-      "nixpkgs-unstable=${pkgs.unstable.path}"
-    ];
   };
 
   nixpkgs = {

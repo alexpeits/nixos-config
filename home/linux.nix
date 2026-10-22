@@ -28,7 +28,7 @@ in
       htop
       wget
 
-      exa
+      eza
       fd
       jq
       ripgrep

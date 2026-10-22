@@ -51,6 +51,11 @@
         };
       };
 
+      devShells.aarch64-darwin.default = pkgs.mkShell {
+        name = "home-manager-shell";
+        packages = [ home-manager.packages.aarch64-darwin.home-manager ];
+      };
+
       macbook-home = self.homeConfigurations.macbook-home.activationPackage;
       macbook-work = self.homeConfigurations.macbook-work.activationPackage;
     };

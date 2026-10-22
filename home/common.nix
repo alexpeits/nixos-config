@@ -29,8 +29,8 @@ in
       ".config/ripgrep/ripgreprc".source = ../dotfiles/ripgreprc;
       ".config/yamllint/config".source = ../dotfiles/yamllint-conf.yml;
     };
+    sessionPath = profile.path;
     sessionVariables = {
-      PATH = "$HOME/.local/bin:$HOME/bin:$PATH";
       EDITOR = "vim";
       LESS = "-r";
       LS_COLORS = "uu=0;36:gu=0;36:da=0;37";

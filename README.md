@@ -1,6 +1,6 @@
 # NixOS configuration
 
-Current version: *22.05* + flakes
+Current version: *26.05* + flakes (inputs pinned to commits in `flake.nix`)
 
 ## Create a bootable USB drive
 
@@ -45,7 +45,6 @@ Roughly this https://qfpl.io/posts/installing-nixos/
 dual boot:
 ```nix
 boot.loader.grub.enable = true;
-boot.loader.grub.version = 2;
 boot.loader.grub.device = "/dev/sda";
 boot.loader.grub.useOSProber = true;
 ```
@@ -63,7 +62,7 @@ boot.loader.systemd-boot.enable = true;
 
 networking.networkmanager.enable = true;
 
-users.extraUsers.alex = {
+users.users.alex = {
   createHome = true;
   extraGroups = ["wheel" "video" "audio" "disk" "networkmanager"];
   group = "users";
@@ -82,20 +81,14 @@ to have a DM after first boot:
 ```nix
 services.xserver = {
   enable = true;
-  displayManager = {
-    gdm = {
-      enable = true;
-      wayland = false;
-    };
-  };
-  desktopManager.plasma5.enable = true;  # or xfce or whatever
+  displayManager.lightdm.enable = true;
+  desktopManager.xfce.enable = true;  # or whatever
   # or
   # windowManager.xmonad.enable = true;
-
-  # to be able to mount an external drive to get secrets etc. for cloning from gh
-  boot.supportedFilesystems = [ "ntfs" ];
-
 };
+
+# to be able to mount an external drive to get secrets etc. for cloning from gh
+boot.supportedFilesystems = [ "ntfs" ];
 ```
 
 ## Useful
@@ -111,9 +104,9 @@ services.xserver = {
 (`$CONFIG` is the location of this repo)
 
 - `git clone git@github.com:alexpeits/nixos-config.git $CONFIG`
-- `sudo nix-channel --add https://github.com/NixOS/nixos-hardware/archive/master.tar.gz nixos-hardware`
-- `sudo nix-channel --update`
 - change your name to alex because it's hardcoded in the configurations
-- `sudo mkdir -m 0755 -p /nix/var/nix/{profiles,gcroots}/per-user/alex` (for `home-manager`)
+- copy the generated `/etc/nixos/hardware-configuration.nix` over `$CONFIG/hardware-configuration.nix`
 - Update flake.nix with new machine (preferably name = hostname)
-- `sudo nixos-rebuild switch --flake '/path/to/nixos/config#<machine name, empty if hostname>`
+- `sudo nixos-rebuild switch --flake "$CONFIG#<machine name, empty if hostname>"`
+  (home-manager is a NixOS module, so this also switches the home configuration)
+- to update, bump the commit hashes in `flake.nix` and run `nix flake lock`

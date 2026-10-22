@@ -1,5 +1,5 @@
 build:
-	nix-shell --run 'home-manager -f ~/nixos-config/debian/home.nix build'
+	nix build --experimental-features "nix-command flakes" "$(abspath $(CURDIR)/..)#debian" -o "$(CURDIR)/result"
 
-switch:
-	nix-shell --run 'home-manager -f ~/nixos-config/debian/home.nix switch'
+switch: build
+	"$(CURDIR)/result/activate"

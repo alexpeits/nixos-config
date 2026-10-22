@@ -68,5 +68,5 @@ EOF
 mkdir -p /etc/opt/chrome/policies/managed/
 
 cat <<\EOF > /etc/opt/chrome/policies/managed/external_protocol_dialog.json
-{"ExternalProtoclDialogShowAlwaysOpenCheckbox": true}
+{"ExternalProtocolDialogShowAlwaysOpenCheckbox": true}
 EOF

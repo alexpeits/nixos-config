@@ -1,10 +1,7 @@
 { pkgs, ... }:
 
 let
-  nixpkgs-unstable = pkgs.unstable;
-
-  # TODO: build emacs with a pinned nixpkgs
-  emacs = nixpkgs-unstable.emacs28WithPackages (
+  emacs = pkgs.emacs.pkgs.withPackages (
     epkgs: with epkgs;
     [ vterm agda2-mode ]
   );
@@ -17,19 +14,19 @@ let
       ;
   };
 
-  agda = nixpkgs-unstable.agda.withPackages {
-    pkgs = [ nixpkgs-unstable.agdaPackages.standard-library ];
-    ghc = nixpkgs-unstable.ghc.withPackages (ps: [ ps.ieee754 ]);
+  agda = pkgs.agda.withPackages {
+    pkgs = [ pkgs.agdaPackages.standard-library ];
+    ghc = pkgs.ghc.withPackages (ps: [ ps.ieee754 ]);
   };
 
   i3lock-wrap = pkgs.callPackage ./tools/i3lock-wrap.nix { };
   kbconfig = pkgs.callPackage ./tools/kbconfig.nix { };
-  nixfmt = pkgs.callPackage ./tools/nixfmt.nix { };
+  nixfmt = pkgs.nixfmt;
   trayer-wrap = pkgs.callPackage ./tools/trayer-wrap.nix { };
   xmonad-build = pkgs.callPackage ./tools/xmonad-build.nix { };
   tpacpi-bat = pkgs.callPackage ./tools/tpacpi-bat.nix { };
 
-  obsidian = pkgs.callPackage ./apps/obsidian.nix { };
+  obsidian = pkgs.obsidian;
 
   haskellPackages = pkgs.callPackage ./haskell { };
 
@@ -38,17 +35,13 @@ let
   # dunst = pkgs.dunst.override { dunstify = true; };
   dunst = pkgs.dunst;
 
-  buildNodePackage = (pkgs.callPackage ./lib.nix { }).buildNodePackage;
-  markdownlint-cli-pkgs = pkgs.callPackage ./tools/markdownlint-cli { };
-  markdownlint-cli = markdownlint-cli-pkgs."markdownlint-cli-0.27.1";
-
   packages =
     [
       emacs
       pkgs.firefox
       pkgs.cheese
       pkgs.deluge
-      nixpkgs-unstable.dropbox
+      pkgs.dropbox
       pkgs.evince
       pkgs.eog
       pkgs.gedit
@@ -58,12 +51,12 @@ let
       pkgs.postman
       pkgs.spotify
       pkgs.vlc
-      # nixpkgs-unstable.zoom-us
-      nixpkgs-unstable.write_stylus
+      # pkgs.zoom-us
+      pkgs.styluslabs-write-bin
       pkgs.kdePackages.wacomtablet
       pkgs.kid3
       pkgs.picard
-      nixpkgs-unstable.musescore
+      pkgs.musescore
       pkgs.arandr
 
       pkgs.qutebrowser
@@ -88,18 +81,13 @@ let
       pkgs.wget
       pkgs.xclip
 
-      pkgs.bat
-      pkgs.direnv
       pkgs.eza
       pkgs.fd
-      pkgs.fzf
       pkgs.jq
       pkgs.ripgrep
 
-      nixpkgs-unstable.vale
-      # markdownlint-cli
+      pkgs.vale
 
-      nixpkgs-unstable.tmate
       pkgs.tmux
       pkgs.vim
 
@@ -124,16 +112,15 @@ let
       tpacpi-bat
       pkgs.paper-icon-theme
 
-      nixpkgs-unstable.xmobar
+      pkgs.xmobar
       xmonad-build
 
       pkgs.lastpass-cli
-      nixpkgs-unstable.bitwarden
-      nixpkgs-unstable.bitwarden-cli
+      pkgs.bitwarden-desktop
+      pkgs.bitwarden-cli
 
       pkgs.audacity
-      nixpkgs-unstable.lilypond
-      # nixpkgs-unstable.musescore
+      pkgs.lilypond
 
       # pkgs.scummvm
 
@@ -150,34 +137,33 @@ let
       pkgs.ocaml
       pkgs.opam
 
-      nixpkgs-unstable.coq_8_12
+      pkgs.coq_8_12
 
       agda
 
       pkgs.tlaplusToolbox
 
-      # nixpkgs-unstable.rustc
-      # nixpkgs-unstable.cargo
-      # nixpkgs-unstable.rustfmt
-      # nixpkgs-unstable.clippy
+      # pkgs.rustc
+      # pkgs.cargo
+      # pkgs.rustfmt
+      # pkgs.clippy
       # pkgs.rustracer
 
       pkgs.niv
       pkgs.cachix
       pkgs.nix-prefetch-git
-      nixpkgs-unstable.nixpkgs-fmt
+      pkgs.nixpkgs-fmt
 
       kbconfig
 
       # latex
       # obsidian
-      nixpkgs-unstable.logseq
 
       # pkgs.dwarf-fortress-packages.dwarf-fortress
       # pkgs.crawlTiles
       # pkgs.brogue
 
-      # nixpkgs-unstable.godot
+      # pkgs.godot
 
       pkgs.steam-run
       # pkgs.steam

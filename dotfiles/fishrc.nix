@@ -86,17 +86,10 @@ let
     set -g fish_pager_color_progress brwhite --background=cyan
   '';
 
+  # in case a macOS update wipes the installer's hook
   mac-extra = ''
-    if test -e "$HOME/.nix-profile/etc/profile.d/nix.sh"
-      fenv source "$HOME/.nix-profile/etc/profile.d/nix.sh"
-    end
-
     if test -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
       fenv source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
-    end
-
-    if test -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-      fenv source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
     end
   '';
 
@@ -160,11 +153,12 @@ in
     end
 
     function py
-      eval "nix-shell -p 'python37.withPackages (pkgs: with pkgs; [ ipython $argv ])'"
+      eval "nix-shell -p 'python3.withPackages (pkgs: with pkgs; [ ipython $argv ])'"
     end
 
+    # nix-shell with the nixpkgs-unstable pinned in nix/sources.json
     function nsu
-      nix-shell -I nixpkgs=(nix-instantiate --eval -E '<nixpkgs-unstable>') $argv
+      nix-shell -I nixpkgs=(nix-instantiate --eval --raw -E "(import $NIXOS_CONFIG/nix/sources.nix).nixpkgs-unstable.outPath") $argv
     end
 
     # messes with emacs

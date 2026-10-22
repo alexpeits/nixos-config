@@ -1,8 +1,6 @@
 { pkgs, lib, ... }:
 let
   scripts = pkgs.callPackage ../dotfiles/scripts.nix { };
-  markdownlint-cli-pkgs = pkgs.callPackage ../packages/tools/markdownlint-cli { };
-  markdownlint-cli = markdownlint-cli-pkgs."markdownlint-cli-0.27.1";
 
 in
 {
@@ -47,7 +45,6 @@ in
       # yamllint
       mdl
       # asciidoctor
-      # markdownlint-cli
 
       tmux
       vim

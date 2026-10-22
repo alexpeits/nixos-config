@@ -49,17 +49,10 @@ let
     fi
   '';
 
+  # in case a macOS update wipes the installer's hook from /etc/zshrc
   mac-extra = ''
-    if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
-      source "$HOME/.nix-profile/etc/profile.d/nix.sh"
-    fi
-
     if [ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then
       source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
-    fi
-
-    if [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
-      source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
     fi
   '';
 

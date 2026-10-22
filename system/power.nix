@@ -1,7 +1,11 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-  powerManagement.powertop.enable = true;
+  # needed by tpacpi-bat
+  boot = {
+    kernelModules = [ "acpi_call" ];
+    extraModulePackages = [ config.boot.kernelPackages.acpi_call ];
+  };
 
   services.tlp = {
     enable = true;
@@ -48,9 +52,4 @@
       RESTORE_DEVICE_STATE_ON_STARTUP = 0;
     };
   };
-
-  # https://unix.stackexchange.com/a/175035
-  services.acpid.acEventCommands = ''
-    echo -1 > /sys/module/usbcore/parameters/autosuspend
-  '';
 }
