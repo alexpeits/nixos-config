@@ -6,6 +6,7 @@
     # terraform
 
     ghc
+    haskell-language-server
     # cabal2nix
     cabal-install
     haskellPackages.stack

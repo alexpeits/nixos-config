@@ -48,6 +48,7 @@ in
 
       tmux
       vim
+      basedpyright
 
       niv
       # lorri

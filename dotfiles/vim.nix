@@ -42,6 +42,7 @@ let
     Plug 'tpope/vim-surround'
     Plug 'chaoren/vim-wordmotion'
     Plug 'godlygeek/tabular' " vim-markdown needs it
+    Plug 'yegappan/lsp'
 
     " filetypes
     Plug 'LnL7/vim-nix'
@@ -57,6 +58,7 @@ let
 
     " themes & ui
     Plug 'https://gitlab.com/protesilaos/tempus-themes-vim'
+    Plug 'sainnhe/everforest'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 
@@ -145,6 +147,30 @@ let
     nnoremap <leader>gc :Commits<CR>
     nnoremap <leader>gd :BCommits<CR>
 
+    " lsp
+    let lspServers = [
+      \ #{name: 'tsserver',
+      \   filetype: ['typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascriptreact'],
+      \   path: 'typescript-language-server', args: ['--stdio'],
+      \   initializationOptions: #{maxTsServerMemory: 8192}},
+      \ #{name: 'basedpyright', filetype: ['python'],
+      \   path: 'basedpyright-langserver', args: ['--stdio']},
+      \ #{name: 'hls', filetype: ['haskell', 'lhaskell'],
+      \   path: 'haskell-language-server-wrapper', args: ['--lsp']},
+      \ #{name: 'gopls', filetype: ['go', 'gomod'],
+      \   path: 'gopls', args: ['serve']},
+      \ #{name: 'rust-analyzer', filetype: ['rust'],
+      \   path: 'rust-analyzer', args: [], syncInit: v:true},
+      \ ]
+    " servers tied to a toolchain (hls, gopls, rust-analyzer) usually come from
+    " the project's dev shell, so register only the ones on PATH at startup
+    autocmd User LspSetup call LspOptionsSet(#{autoComplete: v:false})
+    autocmd User LspSetup call LspAddServer(filter(copy(lspServers), {_, s -> executable(s.path)}))
+    nnoremap <silent> gd :LspGotoDefinition<CR>
+    nnoremap <silent> gD :LspPeekDefinition<CR>
+    nnoremap <silent> gr :LspShowReferences<CR>
+    nnoremap <silent> K :LspHover<CR>
+
     if has("persistent_undo")
         call system('mkdir -p ~/.vim/undo')
         set undodir=~/.vim/undo/
@@ -156,21 +182,32 @@ let
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
 
-    if $TERM_LIGHT != "1"
-        set background=dark
-        colorscheme tempus_winter
-        highlight ExtraWhitespace ctermbg=88
-        highlight haskellBottom ctermfg=Red
-        highlight haskellFail ctermfg=LightRed
-        highlight MatchParen guibg=#454857 cterm=bold
-        let g:airline_theme='distinguished'
-    else
-        set background=light
-        colorscheme tempus_dawn
-        highlight ExtraWhitespace ctermbg=210
-        highlight MatchParen guibg=#d7dbd5 cterm=bold
-        let g:airline_theme='lucius'
-    endif
+    " if $TERM_LIGHT != "1"
+    "     set background=dark
+    "     colorscheme tempus_winter
+    "     highlight ExtraWhitespace ctermbg=88
+    "     highlight haskellBottom ctermfg=Red
+    "     highlight haskellFail ctermfg=LightRed
+    "     highlight MatchParen guibg=#454857 cterm=bold
+    "     let g:airline_theme='distinguished'
+    " else
+    "     set background=light
+    "     colorscheme tempus_dawn
+    "     highlight ExtraWhitespace ctermbg=210
+    "     highlight MatchParen guibg=#d7dbd5 cterm=bold
+    "     let g:airline_theme='lucius'
+    " endif
+
+    set background=dark
+
+    let g:everforest_better_performance=1
+    let g:everforest_background='hard'
+    colorscheme everforest
+
+    let g:airline_theme='distinguished'
+
+    highlight ExtraWhitespace ctermbg=88
+    highlight MatchParen guibg=#454857 cterm=bold
 
     highlight Search cterm=reverse
 
